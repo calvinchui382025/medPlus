@@ -6,6 +6,7 @@ import { CssBaseline } from '@mui/material';
 import './App.css';
 import { NavBar } from './components';
 import { Home,  About, Carriers, Contact, Liability, Products, Quote } from './Pages';
+import { styled } from '@mui/system';
 
 const darkTheme = createTheme({
   palette: {
@@ -20,7 +21,7 @@ const darkTheme = createTheme({
       main: '#00e676',
     },
   }
-})
+});
 
 const lightTheme = createTheme({
   palette: {
@@ -35,23 +36,39 @@ const lightTheme = createTheme({
       main: '#00e676',
     },
   }
-})
+});
+
+const Root = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+});
+
+const RouteContainer = styled('div')({
+  display: 'flex',
+  width: '100%',
+  height: '100%',
+});
 
 function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
       <BrowserRouter>
-      <NavBar />
-        <Routes>
-          <Route path='/home' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/products' element={<Products />} />
-          <Route path='/carriers' element={<Carriers />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/liability' element={<Liability />} />
-          <Route path='/quote' element={<Quote />} />
-        </Routes>
+      <Root>
+        <NavBar />
+        <RouteContainer>
+          <Routes>
+            <Route path='/home' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/products' element={<Products />} />
+            <Route path='/carriers' element={<Carriers />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/liability' element={<Liability />} />
+            <Route path='/quote' element={<Quote />} />
+          </Routes>
+        </RouteContainer>
+        </Root>
       </BrowserRouter>
     </ThemeProvider>
   );
