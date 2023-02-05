@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -7,7 +7,7 @@ import './App.css';
 import { Header } from './components';
 import { Home,  About, Carriers, Contact, Liability, Products, Quote } from './Pages';
 import { styled } from '@mui/system';
-
+//======================================================
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -37,7 +37,7 @@ const lightTheme = createTheme({
     },
   }
 });
-
+//======================================================
 const Root = styled('div')({
   display: 'flex',
   flexDirection: 'column',
@@ -49,14 +49,19 @@ const RouteContainer = styled('div')({
   width: '100%',
   height: '100%',
 });
-
+//======================================================
 function App() {
+  const [theme, setTheme] = useState(lightTheme);
+  const handleToggleTheme = () => {
+    if (theme?.palette?.mode === 'light') setTheme(darkTheme);
+    else setTheme(lightTheme)
+  }
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
       <Root>
-        <Header />
+        <Header theme={theme} handleToggleTheme={handleToggleTheme} />
         <RouteContainer>
           <Routes>
             <Route path='/home' element={<Home />} />

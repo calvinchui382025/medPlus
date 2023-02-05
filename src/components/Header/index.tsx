@@ -1,6 +1,6 @@
 import { styled } from '@mui/system';
-import React from 'react';
-import NavBar from '../NavBar';
+import React, { FC } from 'react';
+import NavBar, { NavBarTypes } from '../NavBar';
 
 const HeaderContainer = styled('div')({
   display: 'flex',
@@ -9,12 +9,12 @@ const HeaderContainer = styled('div')({
   justifyContent: 'center',
 })
 
-const Header = () => {
+const Header: FC<NavBarTypes> = ({ theme, handleToggleTheme }) => {
 
 
   return (
     <HeaderContainer>
-      <NavBar />
+      <NavBar theme={theme} handleToggleTheme={handleToggleTheme} />
     </HeaderContainer>
   )
 }
