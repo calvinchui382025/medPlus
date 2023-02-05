@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
 import { 
@@ -17,6 +17,8 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 //====================================================== Persistent variables
 const navItems = ['Home', 'About', 'Products', 'Carriers', 'Contact', 'Liability', 'Quote'];
 const drawerWidth = 240;
@@ -55,7 +57,12 @@ const DrawerHeader = styled('div')(({theme}) => {
     }) 
   });
 //======================================================
-const NavBar = () => {
+export interface NavBarTypes {
+  theme: any,
+  handleToggleTheme: any,
+}
+//======================================================
+const NavBar: FC<NavBarTypes> = ({ theme, handleToggleTheme }) => {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const handleDrawerToggle = () => {
@@ -125,6 +132,11 @@ const NavBar = () => {
               >
               MedPlus
             </Typography>
+            <IconButton style={{ color: 'white'}} onClick={handleToggleTheme}>
+              {
+                theme?.palette?.mode === 'dark' ? <DarkModeIcon /> : <LightModeIcon />
+              }
+            </IconButton>
             <Box 
               sx={{ 
                 display: { 
