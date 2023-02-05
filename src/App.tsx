@@ -10,6 +10,9 @@ import { Home,  About, Carriers, Contact, Liability, Products, Quote } from './P
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+    background: {
+      default: "darkgrey"
+    },
     primary: {
       main: '#f44336',
     },
@@ -22,6 +25,9 @@ const darkTheme = createTheme({
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
+    background: {
+      default: "lightgrey"
+    },
     primary: {
       main: '#f44336',
     },
@@ -33,7 +39,7 @@ const lightTheme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={lightTheme}>
       <CssBaseline />
       <BrowserRouter>
       <NavBar />
