@@ -41,6 +41,10 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/products' element={<Products />} />
+          <Route path='/carriers' element={<Carriers />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/liability' element={<Liability />} />
+          <Route path='/quote' element={<Quote />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

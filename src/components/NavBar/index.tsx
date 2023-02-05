@@ -10,27 +10,47 @@ const Nav = styled('nav')({
 })
 
 const NavBar = () => {
-    return (
-        <>
-            <Nav>
-                <Button>
-                    <Link to='/home'>
-                        home
-                    </Link>
-                </Button>
-                <Button>
-                    <Link to='/about'>
-                        about
-                    </Link>
-                </Button>
-                <Button>
-                    <Link to='/products'>
-                        products
-                    </Link>
-                </Button>
-            </Nav>
-        </>
-    )
+  return (
+    <>
+      <Nav>
+        <Button>
+          <Link to='/home'>
+            home
+          </Link>
+        </Button>
+        <Button>
+          <Link to='/about'>
+            about
+          </Link>
+        </Button>
+        <Button>
+          <Link to='/products'>
+            products
+          </Link>
+        </Button>
+        <Button>
+          <Link to='/carriers'>
+            carriers
+          </Link>
+        </Button>
+        <Button>
+          <Link to='/contact'>
+            contact
+          </Link>
+        </Button>
+        <Button>
+          <Link to='/quote'>
+            quote
+          </Link>
+        </Button>
+        <Button>
+          <Link to='/liability'>
+            liability
+          </Link>
+        </Button>
+      </Nav>
+    </>
+  )
 }
 
 export default NavBar;
