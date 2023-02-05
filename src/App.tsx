@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import './App.css';
-import { NavBar } from './components';
+import { Header } from './components';
 import { Home,  About, Carriers, Contact, Liability, Products, Quote } from './Pages';
 import { styled } from '@mui/system';
 
@@ -15,7 +15,7 @@ const darkTheme = createTheme({
       default: "darkgrey"
     },
     primary: {
-      main: '#f44336',
+      main: '#4682b4',
     },
     secondary: {
       main: '#00e676',
@@ -27,10 +27,10 @@ const lightTheme = createTheme({
   palette: {
     mode: 'light',
     background: {
-      default: "lightgrey"
+      // default: "lightgrey"
     },
     primary: {
-      main: '#f44336',
+      main: '#4682b4',
     },
     secondary: {
       main: '#00e676',
@@ -56,7 +56,7 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
       <Root>
-        <NavBar />
+        <Header />
         <RouteContainer>
           <Routes>
             <Route path='/home' element={<Home />} />
