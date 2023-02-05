@@ -48,9 +48,10 @@ const DrawerHeader = styled('div')(({theme}) => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '56px',
+    height: '64px',
     backgroundColor: theme?.palette?.primary?.main,
     color: 'white',
+    boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
     }) 
   });
 //======================================================
