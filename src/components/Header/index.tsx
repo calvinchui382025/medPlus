@@ -4,7 +4,7 @@ import NavBar from '../NavBar';
 
 const HeaderContainer = styled('div')({
   display: 'flex',
-  height: '10%',
+  // height: '10%',
   // alignItems: 'center',
   justifyContent: 'center',
 })
