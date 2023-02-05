@@ -1,7 +1,8 @@
 import React from 'react'
+import { Root } from '../../styled-components'
 
 export const Products = () => {
   return (
-    <div>Products</div>
+    <Root>Products</Root>
   )
 }
