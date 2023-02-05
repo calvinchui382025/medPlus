@@ -9,7 +9,7 @@ const Nav = styled('nav')({
     flexDirection: 'row',
 })
 
-const Navbar = () => {
+const NavBar = () => {
     return (
         <>
             <Nav>
@@ -33,4 +33,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar;
+export default NavBar;

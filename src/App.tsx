@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import './App.css';
-import Navbar from './components/NavBar';
-import { Home } from './components/Home';
-import { About } from './components/About';
-import { Products } from './components/Products';
+import { NavBar } from './components';
+import { Home,  About, Carriers, Contact, Liability, Products, Quote } from './Pages';
 
 const darkTheme = createTheme({
   palette: {
@@ -38,7 +36,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <BrowserRouter>
-      <Navbar />
+      <NavBar />
         <Routes>
           <Route path='/home' element={<Home />} />
           <Route path='/about' element={<About />} />
