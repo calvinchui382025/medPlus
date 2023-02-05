@@ -11,6 +11,9 @@ import { styled } from '@mui/system';
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+    background: {
+      default: "darkgrey"
+    },
     primary: {
       main: '#f44336',
     },
@@ -23,6 +26,9 @@ const darkTheme = createTheme({
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
+    background: {
+      default: "lightgrey"
+    },
     primary: {
       main: '#f44336',
     },
@@ -46,7 +52,7 @@ const RouteContainer = styled('div')({
 
 function App() {
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={lightTheme}>
       <CssBaseline />
       <BrowserRouter>
       <Root>
@@ -56,6 +62,10 @@ function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/products' element={<Products />} />
+            <Route path='/carriers' element={<Carriers />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/liability' element={<Liability />} />
+            <Route path='/quote' element={<Quote />} />
           </Routes>
         </RouteContainer>
         </Root>
