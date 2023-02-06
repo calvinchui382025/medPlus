@@ -147,7 +147,7 @@ const NavBar: FC<NavBarTypes> = ({ theme, handleToggleTheme }) => {
               <MenuIcon />
             </HamburgerIconButton>
             {/* @ts-ignore */}
-            <MedPlusIconButton size="large" component={Link} to='/'>
+            <MedPlusIconButton size="large" component={Link} to='/' onClick={() => setSelectedPage('/')}>
               <MedicalServicesIcon />
             </MedPlusIconButton>
             <Typography
