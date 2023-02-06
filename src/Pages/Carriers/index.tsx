@@ -6,7 +6,7 @@ import { CarrierRatingColorObj, CarriersList } from '../../utils/constants'
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Footer from '../../components/Footer'
-import { CarrierContentContainer, CarrierTextContainer, CarrierPageText, InfoContainer, StyledListContainer, CarrierList, CarrierListItem, CarrierListButton, CarrierName, CarrierDetailsWrapper, CarrierDescription, CarrierRating, RatingInfoContainer, RatingList, RatingListItemTextLeft, leftTextProps, RatingListItemTextRight, rightTextProps } from './styledComponents'
+import { CarrierContentContainer, CarrierTextContainer, CarrierPageText, InfoContainer, StyledListContainer, CarrierList, CarrierListItem, CarrierListButton, CarrierName, CarrierDetailsWrapper, CarrierDescription, CarrierRating, RatingInfoContainer, RatingList, RatingListItemTextLeft, leftTextProps, RatingListItemTextRight, rightTextProps, CarrierLink } from './styledComponents'
 //==============================================================================
 
 //==============================================================================
@@ -53,6 +53,11 @@ export const Carriers = () => {
                       <CarrierDetailsWrapper>
                         <CarrierDescription variant='body1'>{description}</CarrierDescription>
                         <CarrierRating variant='button' style={{color: ratingColor ? ratingColor : ''}}>{rating}</CarrierRating>
+                        {url && url?.length > 0 && (
+                          <CarrierLink href={url} target='_blank'>
+                            {url}
+                          </CarrierLink>
+                        )}
                       </CarrierDetailsWrapper>
                     </Collapse>
                   </CarrierListItem>

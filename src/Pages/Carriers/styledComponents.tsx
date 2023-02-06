@@ -1,4 +1,4 @@
-import { Typography, List, ListItemText, ListItem, ListItemButton } from '@mui/material';
+import { Typography, List, ListItemText, ListItem, ListItemButton, Link } from '@mui/material';
 import { styled } from '@mui/system';
 import { mainColor } from '../../App';
 import { ContentContainer } from '../../styled-components';
@@ -102,5 +102,10 @@ export const CarrierDescription = styled(Typography)(({theme}) => ({
 )
 export const CarrierRating = styled(Typography)(({theme}) => ({
     fontWeight: 'bold',
+  })
+)
+export const CarrierLink = styled(Link)(({theme}) => ({
+    color: mainColor,
+
   })
 )
