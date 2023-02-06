@@ -15,6 +15,9 @@ const ListRow = styled('div')({
   flexDirection: 'row',
   justifyContent: 'space-between',
   margin: '12px',
+  '@media (max-width: 600px)': {
+    margin: '6px',
+  }
 })
 //======================================================
 const TextWrapper = styled(Card)<animateProps>(() => ({
@@ -23,10 +26,14 @@ const TextWrapper = styled(Card)<animateProps>(() => ({
     padding: '24px',
     margin: '12px 24px',
     boxShadow: niceBoxShadow,
+    '@media (max-width: 600px)': {
+      padding: '12px 24px',
+    },
   })
 )
 const CommercialTextWrapper = styled(TextWrapper)<animateProps>(({animate}) => ({
     animation: animate ? `${moveRightAnimation} 1s` : 'none',
+    
   })
 )
 const PersonalTextWrapper = styled(TextWrapper)<animateProps>(({animate}) => ({
