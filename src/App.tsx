@@ -12,10 +12,10 @@ const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: "darkgrey"
+      default: '#282829'
     },
     primary: {
-      main: mainColor,
+      main: '#CDDDF9',
     },
     secondary: {
       main: '#00e676',
@@ -28,6 +28,7 @@ const lightTheme = createTheme({
     mode: 'light',
     background: {
       // default: "lightgrey"
+      paper: '#f2f2f2'
     },
     primary: {
       main: mainColor,
@@ -38,12 +39,15 @@ const lightTheme = createTheme({
   }
 });
 //======================================================
-const Root = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100%',
-  overflow: 'hidden',
-});
+const Root = styled('div')(({theme}) => {
+  console.log({theme})
+  return ({
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    overflow: 'hidden',
+  })
+})
 
 const RouteContainer = styled('div')({
   display: 'flex',
