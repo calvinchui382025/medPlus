@@ -18,6 +18,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import { niceBoxShadow } from '../../utils/constants';
 //====================================================== Persistent variables
 const navItems = ['Home', 'About', 'Products', 'Carriers', 'Contact', 'Liability', 'Quote'];
 const drawerWidth = 240;
@@ -51,7 +52,7 @@ const DrawerHeader = styled('div')(({theme}) => {
     height: '64px',
     backgroundColor: theme?.palette?.primary?.main,
     color: 'white',
-    boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
+    boxShadow: niceBoxShadow,
     }) 
   });
 
