@@ -1,7 +1,7 @@
 import { Card, keyframes, List, ListItem, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import React, { useEffect, useRef, useState } from 'react'
-import  {useInView}  from 'react-intersection-observer';
+import React from 'react'
+import { useInView } from 'react-intersection-observer';
 import { Image } from 'mui-image'
 //======================================================
 const commercialList = [
