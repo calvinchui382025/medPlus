@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
@@ -64,7 +63,7 @@ function App() {
         <Header theme={theme} handleToggleTheme={handleToggleTheme} />
         <RouteContainer>
           <Routes>
-            <Route path='/home' element={<Home />} />
+            <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/products' element={<Products />} />
             <Route path='/carriers' element={<Carriers />} />
@@ -78,5 +77,5 @@ function App() {
     </ThemeProvider>
   );
 }
-
+//======================================================
 export default App;

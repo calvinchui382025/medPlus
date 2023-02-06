@@ -25,7 +25,6 @@ const drawerWidth = 240;
 //====================================================== Styled Components
 const NavBarWrapper = styled('div')({
   height: '64px',
-  
 });
 
 const StyledAppBar = styled(AppBar)({
@@ -117,7 +116,7 @@ const NavBar: FC<NavBarTypes> = ({ theme, handleToggleTheme }) => {
               <MenuIcon />
             </HamburgerIconButton>
             {/* @ts-ignore */}
-            <MedPlusIconButton size="large" component={Link} to='/home'>
+            <MedPlusIconButton size="large" component={Link} to='/'>
               <MedicalServicesIcon />
             </MedPlusIconButton>
             <Typography
@@ -146,7 +145,8 @@ const NavBar: FC<NavBarTypes> = ({ theme, handleToggleTheme }) => {
               }}
             >
               {navItems.map((item) => {
-                const to = item.toLowerCase();
+                let to = item.toLowerCase();
+                if (item === 'Home') to = '/'
                 return (
                 <Button 
                   key={item} 
