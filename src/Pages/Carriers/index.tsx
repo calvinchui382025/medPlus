@@ -40,7 +40,6 @@ export const Carriers = () => {
                 const opened = openedList[name] === true;
                 const ratingValue = rating.split(' ').slice(-1);
                 const ratingColor = CarrierRatingColorObj[ratingValue[0]];
-                console.log(ratingValue, ratingColor)
                 return (
                   <CarrierListItem>
                     <CarrierListButton 
