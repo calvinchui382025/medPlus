@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Root } from '../../styled-components'
-import { Box, styled } from '@mui/system'
-import { Button, Card } from '@mui/material'
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
-import Diversity1Icon from '@mui/icons-material/Diversity1';
-import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import { styled } from '@mui/system'
+import { Card } from '@mui/material'
 import { moveDownAnimation, moveUpAnimation, niceBoxShadow } from '../../utils/constants';
-import { useInView } from 'react-intersection-observer';
-import { animateProps } from '../../utils/constants';
 import { HomeCards } from '../../utils/constants';
 //======================================================
 interface ImageboxProps {
