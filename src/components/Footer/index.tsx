@@ -43,7 +43,8 @@ const Footer = () => {
           width="100%"
         />
       </FooterImageContainer>
-      <p>Footer</p>
+      {/* <p>Footer</p> */}
+      <h6>2023  Designed, Developed & Maintained by: </h6>
     </FooterRoot>
   )
 }
