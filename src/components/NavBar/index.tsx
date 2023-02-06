@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
 import { 
@@ -67,6 +67,10 @@ const NavBar: FC<NavBarTypes> = ({ theme, handleToggleTheme }) => {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+
+  const currentURL = window.location.pathname;
+  const [selectedPage, setSelectedPage] = useState(currentURL);
+
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -146,16 +150,19 @@ const NavBar: FC<NavBarTypes> = ({ theme, handleToggleTheme }) => {
             >
               {
                 navItems.map((item) => {
-                  let to = item.toLowerCase();
+                  let to = `/${item.toLowerCase()}`;
                   if (item === 'Home') to = '/'
                   return (
                     <Button 
                       key={item} 
                       component={Link}
                       sx={{ 
-                        color: '#fff' 
+                        color: '#fff',
+                        borderRadius: '0px',
+                        borderBottom: selectedPage === to ? '2px solid white' : 'none',
                       }} 
                       to={to}
+                      onClick={() => setSelectedPage(to)}
                       >
                       <Typography variant='button'>
                         {item}
