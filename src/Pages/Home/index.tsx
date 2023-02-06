@@ -79,7 +79,7 @@ export const Home = () => {
       <ContentContainer>
       <Imagebox height={windowWidth / 2.334}>
         <img
-          src="/images/homestock.jpg"
+          src={require("../../images/homestock.jpg")}
           style={{height: '100%', width: '100%'}}
         />
       </Imagebox>

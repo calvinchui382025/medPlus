@@ -38,7 +38,7 @@ const Footer = () => {
     <FooterRoot ref={footerRef} animate={footerInView}>
       <FooterImageContainer>
         <FooterImage
-          src="/images/footer-saying.jpg" 
+          src={require("../../images/footer-saying.jpg" )}
           alt="footer" 
           width="100%"
         />

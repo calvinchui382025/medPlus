@@ -54,7 +54,7 @@ export const About = () => {
                 <CardMedia
                   component="img"
                   height="500"
-                  image="/images/photo-peter_doyle-lg.jpg"
+                  image={require("../../images/photo-peter_doyle-lg.jpg")}
                 />
                 <Box
                   sx={{
@@ -83,7 +83,7 @@ export const About = () => {
                 <CardMedia
                   component="img"
                   height="500"
-                  image="/images/photo-dennis_borne-lg.jpg"
+                  image={require("../../images/photo-dennis_borne-lg.jpg")}
                 />
                 <Box
                   sx={{
@@ -112,7 +112,7 @@ export const About = () => {
                 <CardMedia
                   component="img"
                   height="500"
-                  image="/images/photo-karen_jiminez-lg.jpg"
+                  image={require("../../images/photo-karen_jiminez-lg.jpg")}
                 />
                 <Box
                   sx={{
