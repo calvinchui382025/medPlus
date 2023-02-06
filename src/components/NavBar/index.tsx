@@ -144,24 +144,26 @@ const NavBar: FC<NavBarTypes> = ({ theme, handleToggleTheme }) => {
                 } 
               }}
             >
-              {navItems.map((item) => {
-                let to = item.toLowerCase();
-                if (item === 'Home') to = '/'
-                return (
-                <Button 
-                  key={item} 
-                  component={Link}
-                  sx={{ 
-                    color: '#fff' 
-                  }} 
-                  to={to}
-                  >
-                  <Typography variant='button'>
-                    {item}
-                  </Typography>
-                </Button>
-              )}
-              )}
+              {
+                navItems.map((item) => {
+                  let to = item.toLowerCase();
+                  if (item === 'Home') to = '/'
+                  return (
+                    <Button 
+                      key={item} 
+                      component={Link}
+                      sx={{ 
+                        color: '#fff' 
+                      }} 
+                      to={to}
+                      >
+                      <Typography variant='button'>
+                        {item}
+                      </Typography>
+                    </Button>
+                  )}
+                )
+              }
             </Box>
           </StyledToolbar>
         </StyledAppBar>

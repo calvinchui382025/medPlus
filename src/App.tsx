@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import './App.css';
@@ -55,6 +55,7 @@ function App() {
     if (theme?.palette?.mode === 'light') setTheme(darkTheme);
     else setTheme(lightTheme)
   }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -70,6 +71,7 @@ function App() {
             <Route path='/contact' element={<Contact />} />
             <Route path='/liability' element={<Liability />} />
             <Route path='/quote' element={<Quote />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </RouteContainer>
         </Root>
