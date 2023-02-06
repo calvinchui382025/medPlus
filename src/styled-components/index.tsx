@@ -21,3 +21,8 @@ export const ContentContainer = styled('div')({
   padding: '0px',
   // border: '1px solid grey',
 });
+
+export const RowContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+})

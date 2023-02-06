@@ -1,5 +1,7 @@
-import { Root } from '../../styled-components'
-import { styled, Card, Typography } from '@mui/material'
+import { ContentContainer } from '../../styled-components'
+import { styled, Card, CardMedia, Typography, Box, IconButton } from '@mui/material'
+import EmailIcon from '@mui/icons-material/Email';
+import { RowContainer } from '../../styled-components';
 
 // const Meetteamarea = styled('div')({
 //   display: 'flex',
@@ -8,7 +10,7 @@ import { styled, Card, Typography } from '@mui/material'
 
 // })
 
-const Teammemberpicturecard = styled('div')({
+const Teammemberpicturecard = styled(Card)({
   minHeight: 500,
   minWidth: 500,
   margin: "0px 15px 0px 15px",
@@ -24,9 +26,10 @@ const Teammemberarea = styled(Card)({
   backgroundColor: "transparent",
 })
 
+
 export const About = () => {
   return (
-    <Root>
+    <ContentContainer>
       {/* <h1>Our past</h1>
       <div>
       While working as a surplus lines broker for U.S. Risk, Dennis Borne saw that medical professionals were underserved in their insurance needs. There was a lack of business ethics throughout the agency industry, and he saw much room for improvement. In 1997, Dennis decided to fill that gap, and he started MedPLUS LLC. He wanted to be the insurance agent that medical professionals could trust to always serve their best interests. MedPLUS has grown each year since then, becoming a larger presence in the medical professional insurance industry. Our agency has many loyal clients who have been with us since the beginning, and we continue to build strong relationships with our customers on a daily basis.
@@ -46,29 +49,94 @@ export const About = () => {
       Meet our Team
       </Typography>
       <Teammemberarea>
-        <Teammemberpicturecard>
-          <img
-          src={require("../../images/photo-peter_doyle-lg.jpg")}
-          style={{height: "100%", width: "100%"}}
-          >
-          </img>
-        </Teammemberpicturecard>
-        <Teammemberpicturecard>
-          <img
-          src={require("../../images/photo-dennis_borne-lg.jpg")}
-          style={{height: "100%", width: "100%"}}
-          >
-          </img>
-        </Teammemberpicturecard>
-        
-        <Teammemberpicturecard>
-          <img
-          src={require("../../images/photo-karen_jiminez-lg.jpg")}
-          style={{height: "100%", width: "100%"}}
-          >
-          </img>
-        </Teammemberpicturecard>
+          <Teammemberpicturecard sx={{ maxWidth: 345 }}>
+              <Box sx={{ position: 'relative' }}>
+                <CardMedia
+                  component="img"
+                  height="500"
+                  image={require("../../images/photo-peter_doyle-lg.jpg")}
+                />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    width: '100%',
+                    bgcolor: 'rgba(0, 0, 0, 0.54)',
+                    color: 'white',
+                    padding: '10px',
+                  }}
+                >
+                  <Typography variant="h3">Peter Doyle</Typography>
+                  <Typography variant="h5">Agent</Typography>
+                  <RowContainer>
+                    <IconButton sx={{color: "white"}} aria-label="email" component="label">
+                      <Typography variant="body2">Email: pete@medplusllc.com</Typography>
+                      <EmailIcon fontSize="small" sx={{paddingLeft: 0}}/>
+                    </IconButton>
+                  </RowContainer>
+                </Box>
+              </Box>
+            </Teammemberpicturecard>
+            <Teammemberpicturecard sx={{ maxWidth: 345 }}>
+              <Box sx={{ position: 'relative' }}>
+                <CardMedia
+                  component="img"
+                  height="500"
+                  image={require("../../images/photo-dennis_borne-lg.jpg")}
+                />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    width: '100%',
+                    bgcolor: 'rgba(0, 0, 0, 0.54)',
+                    color: 'white',
+                    padding: '10px',
+                  }}
+                >
+                  <Typography variant="h3">Dennis Borne</Typography>
+                  <Typography variant="h5">President</Typography>
+                  <RowContainer>
+                    <IconButton sx={{color: "white"}} aria-label="email" component="label">
+                      <Typography variant="body2">Email: dennis@medplusllc.com</Typography>
+                      <EmailIcon fontSize="small"/>
+                    </IconButton>
+                  </RowContainer>
+                </Box>
+              </Box>
+            </Teammemberpicturecard>
+            <Teammemberpicturecard sx={{ maxWidth: 345 }}>
+              <Box sx={{ position: 'relative' }}>
+                <CardMedia
+                  component="img"
+                  height="500"
+                  image={require("../../images/photo-karen_jiminez-lg.jpg")}
+                />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    width: '100%',
+                    bgcolor: 'rgba(0, 0, 0, 0.54)',
+                    color: 'white',
+                    padding: '10px',
+                  }}
+                >
+                  <Typography variant="h3">Karen Jimenez</Typography>
+                  <Typography variant="h5">ISR</Typography>
+                  <RowContainer>
+                    <IconButton sx={{color: "white"}} aria-label="email" component="label">
+                      <Typography variant="body2">Email: karenw@medplusllc.com</Typography>
+                      <EmailIcon fontSize="small"/>
+                    </IconButton>
+                  </RowContainer>
+                </Box>
+              </Box>
+            </Teammemberpicturecard>
       </Teammemberarea>
-    </Root>
+    </ContentContainer>
   )
 }
