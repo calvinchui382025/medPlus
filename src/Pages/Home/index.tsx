@@ -8,26 +8,26 @@ import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 
 const Imagebox = styled('div')({
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent: 'space-around',
   flexDirection: 'row',
 })
 
-const Productscardsarea = styled('div')({
+const ProductCardsContainer = styled('div')({
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent: 'space-around',
   flexDirection: 'row',
+  padding: '24px',
 })
 
 const Productcard = styled(Card)({
-  width: '33%',
-  height: '450px',
-  color: 'rgb(0, 114, 167)',
+  width: '30%',
   display: 'flex',
   justifyContent: 'top',
   flexDirection: 'column',
   alignItems: 'center',
   textAlign: 'center',
-  padding: 15,
+  boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
+  padding: '12px',
 })
 
 export const Home = () => {
@@ -40,7 +40,7 @@ export const Home = () => {
         >
         </img>
       </Imagebox>
-      <Productscardsarea>
+      <ProductCardsContainer>
         <Productcard>
           <LocalLibraryIcon sx={{fontSize: 60 }} />
           <strong>Commercial Insurance Products</strong>
@@ -56,7 +56,7 @@ export const Home = () => {
           <strong>Personal Insurance Products</strong>
           <p>Life and health insurance have many variables and decisions. How much coverage is enough and what type of policy is best for you and your family are just two of the questions that might arise. After determining your personal product needs, our agency will provide you with the most comprehensive plan with the greatest value for you and your family. We specialize in a wide variety of services and lines of coverage that include, but are not limited to, the following:</p>
         </Productcard>
-      </Productscardsarea>
+      </ProductCardsContainer>
     </Root>
   )
 }
