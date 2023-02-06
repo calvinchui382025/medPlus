@@ -19,8 +19,9 @@ import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { niceBoxShadow } from '../../utils/constants';
+import { navItems } from '../../utils/constants';
 //====================================================== Persistent variables
-const navItems = ['Home', 'About', 'Products', 'Carriers', 'Contact', 'Liability', 'Quote'];
+
 const drawerWidth = 240;
 //====================================================== Styled Components
 const NavBarWrapper = styled('div')({

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Root } from '../../styled-components'
+import { ContentContainer, Root } from '../../styled-components'
 import { styled } from '@mui/system'
 import { Card } from '@mui/material'
 import { moveDownAnimation, moveUpAnimation, niceBoxShadow } from '../../utils/constants';
 import { HomeCards } from '../../utils/constants';
+import Footer from '../../components/Footer';
 //======================================================
 interface ImageboxProps {
   height: number
@@ -13,7 +14,8 @@ const Imagebox = styled('div')<ImageboxProps>(({height}) => ({
     justifyContent: 'space-around',
     flexDirection: 'row',
     animation: `${moveDownAnimation} 2s`,
-    minHeight: height,
+    height: height,
+    maxWidth: '100%',
   })
 )
 
@@ -73,6 +75,8 @@ export const Home = () => {
 
   return (
     <Root>
+
+      <ContentContainer>
       <Imagebox height={windowWidth / 2.334}>
         <img
           src="/images/homestock.jpg"
@@ -98,7 +102,9 @@ export const Home = () => {
         })
         }
       </ProductCardsContainer>
+      </ContentContainer>
 
+      <Footer />
     </Root>
   )
 }
