@@ -1,7 +1,7 @@
 {
   "name": "med-plus",
   "version": "0.1.0",
-  "homepage": "https://snyperifle.github.io/medPlus",
+  "homepage": "https://snyperifle.github.io/medPlus/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
