@@ -48,14 +48,14 @@ export const About = () => {
       <Teammemberarea>
         <Teammemberpicturecard>
           <img
-          src="/images/photo-peter_doyle-lg.jpg"
+          src={require("../../images/photo-peter_doyle-lg.jpg")}
           style={{height: "100%", width: "100%"}}
           >
           </img>
         </Teammemberpicturecard>
         <Teammemberpicturecard>
           <img
-          src="/images/photo-dennis_borne-lg.jpg"
+          src={require("../../images/photo-dennis_borne-lg.jpg")}
           style={{height: "100%", width: "100%"}}
           >
           </img>
@@ -63,7 +63,7 @@ export const About = () => {
         
         <Teammemberpicturecard>
           <img
-          src="/images/photo-karen_jiminez-lg.jpg"
+          src={require("../../images/photo-karen_jiminez-lg.jpg")}
           style={{height: "100%", width: "100%"}}
           >
           </img>

@@ -133,7 +133,7 @@ export const Products = () => {
           <CommercialImage
           // @ts-ignore
             ref={commercialImageRef} 
-            src='/images/commercial_products.jpg'
+            src={require('../../images/commercial_products.jpg')}
             animate={commercialImageVisable}
           />
           <CommercialTextWrapper ref={commercialTextWrapperRef} animate={commercialTextWrapperVisible}>
@@ -155,12 +155,6 @@ export const Products = () => {
                   )
                 })}
               </CommercialList>
-              {/* <Image 
-                src='/images/pexels-karolina-grabowska-4386464.jpg'
-                shift='left'
-                duration={2000}
-                distance='40px'
-              /> */}
             </ListRow>
           </CommercialTextWrapper>
         </StyledSection>
@@ -168,7 +162,7 @@ export const Products = () => {
         <StyledSection>
           <PersonalImage 
             ref={personalImageRef}
-            src='/images/personal_products.jpg' 
+            src={require('../../images/personal_products.jpg' )}
             animate={personalImageVisible}
           />
           <PersonalTextWrapper ref={personalTextWrapperRef} animate={personalTextWrapperVisible}>
@@ -198,7 +192,7 @@ export const Products = () => {
         <StyledSection>
           <ProfessionalImage
             ref={professionalImageRef}
-            src='/images/professional_liability.jpg'
+            src={require('../../images/professional_liability.jpg')}
             animate={professionalImageVisible}
           />
           <ProfessionalTextWrapper ref={professionalTextWrapperRef} animate={professionalTextWrapperVisible}>
