@@ -3,6 +3,8 @@ import Diversity1Icon from '@mui/icons-material/Diversity1';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import { keyframes } from '@mui/material';
 //======================================================
+export const navItems = ['Home', 'About', 'Products', 'Liability', 'Quote', 'Carriers', 'Contact'];
+//======================================================
 export const niceBoxShadow = '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)';
 //======================================================
 export interface animateProps {
