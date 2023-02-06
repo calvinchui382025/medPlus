@@ -14,7 +14,7 @@ const ListRow = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
-  margin: '24px',
+  margin: '12px',
 })
 //======================================================
 const TextWrapper = styled(Card)<animateProps>(() => ({
@@ -47,14 +47,14 @@ const MediumText = styled(Typography)({
   
   // fontFamily: 'Roboto',
   '@media (max-width: 600px)': {
-    fontSize: '0.8rem',
+    fontSize: '0.7rem',
   },
 });
 const SmallText = styled(Typography)({
   fontSize: '0.8rem',
   fontWeight: 'bold',
   '@media (max-width: 600px)': {
-    fontSize: '0.7rem',
+    fontSize: '0.6rem',
   },
 });
 
