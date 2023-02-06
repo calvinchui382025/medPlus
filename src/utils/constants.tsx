@@ -1,11 +1,14 @@
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import Diversity1Icon from '@mui/icons-material/Diversity1';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import { keyframes } from '@mui/material';
-
+//======================================================
 export const niceBoxShadow = '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)';
-
+//======================================================
 export interface animateProps {
   animate?: boolean
 }
-
+//======================================================
 export const moveRightAnimation = keyframes`
 0%    {
   opacity: 0; 
@@ -16,7 +19,6 @@ export const moveRightAnimation = keyframes`
   transform: translateX(0px);
 }
 `
-
 export const moveLeftAnimation = keyframes`
 0%    {
   opacity: 0;
@@ -27,7 +29,27 @@ export const moveLeftAnimation = keyframes`
   transform: translateX(0px);
 }
 `
-
+export const moveUpAnimation = keyframes`
+0%    {
+  opacity: 0;
+  transform: translateY(40px);
+}
+100%  {
+  opacity: 1;
+  transform: translateY(0px);
+}
+`
+export const moveDownAnimation = keyframes`
+0%    {
+  opacity: 0;
+  transform: translateY(-40px);
+}
+100%  {
+  opacity: 1;
+  transform: translateY(0px);
+}
+`
+//======================================================
 export const commercialList = [
   'Commercial property and general liability',
   "Business owner's policies",
@@ -79,3 +101,21 @@ export const professionalList2 = [
   'Dialysis centers',
   'MRI imaging centers'
 ];
+//======================================================
+export const HomeCards = [
+  {
+    title: 'Professional Liability Insurance',
+    icon: <VolunteerActivismIcon sx={{fontSize: 50}}  />,
+    description: "The medical profession is more challenged today by medical malpractice than it has been at any other point in history. You'd like to think it will never happen to you, but unfortunately, it can.",
+  },
+  {
+    title: 'Commercial Insurance Products',
+    icon: <LocalLibraryIcon sx={{fontSize: 50}}  />,
+    description: 'Our experienced staff is committed to delivering commercial products tailored to meet your professional needs. We are ready to work with you to develop a program that makes sense for you and your employees.',
+  },
+  {
+    title: 'Personal Insurance Products',
+    icon: <Diversity1Icon sx={{fontSize: 50}}  />,
+    description: "Life and health insurance have many variables and decisions. How much coverage is enough and what type of policy is best for you and your family are just two of the questions that might arise. After determining your personal product needs, our agency will provide you with the most comprehensive plan with the greatest value for you and your family.",
+  },
+]
