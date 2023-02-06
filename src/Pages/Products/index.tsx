@@ -1,4 +1,4 @@
-import { keyframes, List, ListItem, Typography } from '@mui/material';
+import { Card, keyframes, List, ListItem, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useEffect, useRef, useState } from 'react'
 import  {useInView}  from 'react-intersection-observer';
@@ -84,18 +84,33 @@ const StyledSection = styled('section')({
 interface animateProps {
   animate?: boolean
 }
-const TextWrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  margin: '24px',
-})
 const ListRow = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
   margin: '24px',
 })
-
+//======================================================
+const TextWrapper = styled(Card)<animateProps>(() => ({
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '24px',
+    margin: '12px 24px',
+  })
+)
+const CommercialTextWrapper = styled(TextWrapper)<animateProps>(({animate}) => ({
+    animation: animate ? `${moveRightAnimation} 2s` : 'none',
+  })
+)
+const PersonalTextWrapper = styled(TextWrapper)<animateProps>(({animate}) => ({
+    animation: animate ? `${moveLeftAnimation} 2s` : 'none',
+  })
+)
+const ProfessionalTextWrapper = styled(TextWrapper)<animateProps>(({animate}) => ({
+    animation: animate ? `${moveRightAnimation} 2s` : 'none',
+  })
+)
+//======================================================
 const CommercialImage = styled('img')<animateProps>(({animate}) => ({
   animation: animate ? `${moveRightAnimation} 2s` : 'none',
   width: '100%',
@@ -106,10 +121,6 @@ const CommercialTopText = styled(Typography)<animateProps>(({animate}) => ({
   })
 )
 const CommercialList = styled(List)<animateProps>(({animate}) => ({
-    animation: animate ? `${moveRightAnimation} 2s` : 'none',
-  })
-)
-const COmmercialBottomText = styled(Typography)<animateProps>(({animate}) => ({
     animation: animate ? `${moveRightAnimation} 2s` : 'none',
   })
 )
@@ -126,13 +137,11 @@ const PersonalList = styled(List)<animateProps>(({animate}) => ({
     animation: animate ? `${moveLeftAnimation} 2s` : 'none',
   })
 )
-
 const ProfessionalImage = styled('img')<animateProps>(({animate}) => ({
     animation: animate ? `${moveRightAnimation} 2s` : 'none',
     width: '100%',
   })
 )
-
 const ProfessionalTopText = styled(Typography)<animateProps>(({animate}) => ({
     animation: animate ? `${moveRightAnimation} 2s` : 'none',
   })
@@ -145,7 +154,6 @@ const ProfessionalMiddleText = styled(Typography)<animateProps>(({animate}) => (
     animation: animate ? `${moveRightAnimation} 2s` : 'none',
   })
 )
-
 const ProfessionalList2 = styled(List)<animateProps>(({animate}) => ({
     animation: animate ? `${moveRightAnimation} 2s` : 'none',
   })
@@ -153,19 +161,13 @@ const ProfessionalList2 = styled(List)<animateProps>(({animate}) => ({
 //======================================================
 export const Products = () => {
   const { ref: commercialImageRef, inView: commercialImageVisable } = useInView();
-  const { ref: commercialTopTextRef, inView: commercialTopTextVisible } = useInView();
-  const { ref: commercialListRef, inView: commercialListVisible } = useInView();
-  const { ref: commercialBottomTextRef, inView: commercialBottomTextVisible } = useInView();
+  const { ref: commercialTextWrapperRef, inView: commercialTextWrapperVisible } = useInView();
 
   const { ref: personalImageRef, inView: personalImageVisible } = useInView();
-  const { ref: personalTopTextRef, inView: personalTopTextVisible } = useInView();
-  const { ref: personalListRef, inView: personalListVisible } = useInView();
+  const { ref: personalTextWrapperRef, inView: personalTextWrapperVisible } = useInView();
 
   const { ref: professionalImageRef, inView: professionalImageVisible } = useInView();
-  const { ref: professionalTopTextRef, inView: professionalTopTextVisible } = useInView();
-  const { ref: professionalList1Ref, inView: professionalList1Visible } = useInView();
-  const { ref: professionalMiddleTextRef, inView: professionalMiddleTextVisible } = useInView();
-  const { ref: professionalList2Ref, inView: professionalList2Visible } = useInView();
+  const { ref: professionalTextWrapperRef, inView: professionalTextWrapperVisible } = useInView();
 
   return (
     <div>
@@ -176,15 +178,15 @@ export const Products = () => {
           src='/images/commercial_products.jpg'
           animate={commercialImageVisable}
         />
-        <TextWrapper>
-          <CommercialTopText variant='body1' ref={commercialTopTextRef} animate={commercialTopTextVisible}>
+        <CommercialTextWrapper ref={commercialTextWrapperRef} animate={commercialTextWrapperVisible}>
+          <CommercialTopText variant='body1'>
             Our experienced staff is committed to delivering commercial products tailored to meet your professional needs. 
             We are ready to work with you to develop a program that makes sense for you and your employees. 
             Our wide variety of services and lines of coverage include, but are not limited to, the following:
           </CommercialTopText>
           <ListRow>
 
-            <CommercialList ref={commercialListRef} animate={commercialListVisible} dense>
+            <CommercialList dense>
               {commercialList.map((item, index) => {
                 return (
                   <ListItem key={index}>
@@ -202,7 +204,7 @@ export const Products = () => {
               distance='40px'
             /> */}
           </ListRow>
-        </TextWrapper>
+        </CommercialTextWrapper>
       </StyledSection>
 
       <StyledSection>
@@ -211,8 +213,8 @@ export const Products = () => {
           src='/images/personal_products.jpg' 
           animate={personalImageVisible}
         />
-        <TextWrapper>
-          <PersonalTopText variant='body1' ref={personalTopTextRef} animate={personalTopTextVisible}>
+        <PersonalTextWrapper ref={personalTextWrapperRef} animate={personalTextWrapperVisible}>
+          <PersonalTopText>
             Life and health insurance have many variables and decisions. 
             How much coverage is enough and what type of policy is best for you and your family are just two of the questions that might arise. 
             After determining your personal product needs, our agency will provide you with the most comprehensive plan with the greatest value for you and your family. 
@@ -220,7 +222,7 @@ export const Products = () => {
           </PersonalTopText>
           <ListRow>
             <div></div>
-            <PersonalList ref={personalListRef} animate={personalListVisible} dense>
+            <PersonalList dense>
               {personalList.map((item, index) => {
                 return (
                   <ListItem key={index} style={{display: 'flex', justifyContent: 'flex-end', textAlign: 'right'}} >
@@ -232,7 +234,7 @@ export const Products = () => {
               })}
             </PersonalList>
           </ListRow>
-        </TextWrapper>
+        </PersonalTextWrapper>
       </StyledSection>
 
       <StyledSection>
@@ -241,12 +243,12 @@ export const Products = () => {
           src='/images/professional_liability.jpg'
           animate={professionalImageVisible}
         />
-        <TextWrapper>
-          <ProfessionalTopText variant='body1' ref={professionalTopTextRef} animate={professionalTopTextVisible}>
+        <ProfessionalTextWrapper ref={professionalTextWrapperRef} animate={professionalTextWrapperVisible}>
+          <ProfessionalTopText variant='body1' >
           The medical profession is more challenged today by medical malpractice than it has been at any other point in history. You'd like to think it will never happen to you, but unfortunately, it can. MedPLUS offers several liability coverage options that can protect you and your practice from the devastating effects of a lawsuit. Depending on the insurance carrier, professional liability insurance coverage includes the following:
           </ProfessionalTopText>
           <ListRow>
-            <ProfessionalList1 ref={professionalList1Ref} animate={professionalList1Visible} dense>
+            <ProfessionalList1 dense>
               {professionalList1.map((item, index) => {
                 return (
                   <ListItem key={index}>
@@ -258,11 +260,11 @@ export const Products = () => {
               })}
             </ProfessionalList1>
           </ListRow>
-          <ProfessionalMiddleText variant='body1' ref={professionalMiddleTextRef} animate={professionalMiddleTextVisible}>
+          <ProfessionalMiddleText variant='body1'>
           Professional liability solutions are available for physicians, dentists, chiropractors, mid-level providers, and allied staff. In addition, MedPLUS can find the best coverage to protect the following facilities:
           </ProfessionalMiddleText>
           <ListRow>
-            <ProfessionalList2 ref={professionalList2Ref} animate={professionalList2Visible} dense>
+            <ProfessionalList2 dense>
               {professionalList2.map((item, index) => {
                 return (
                   <ListItem key={index}>
@@ -274,7 +276,7 @@ export const Products = () => {
               })}
             </ProfessionalList2>
           </ListRow>
-        </TextWrapper>
+        </ProfessionalTextWrapper>
       </StyledSection>
     </div>
   )
