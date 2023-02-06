@@ -42,12 +42,20 @@ const Root = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
+  overflow: 'hidden',
 });
 
 const RouteContainer = styled('div')({
   display: 'flex',
   width: '100%',
   height: '100%',
+});
+
+const ScrollableContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  flex: '1 1 auto',
+  overflow: 'auto',
 });
 //======================================================
 function App() {
@@ -63,18 +71,20 @@ function App() {
       <BrowserRouter>
       <Root>
         <Header theme={theme} handleToggleTheme={handleToggleTheme} />
-        <RouteContainer>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/products' element={<Products />} />
-            <Route path='/carriers' element={<Carriers />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/liability' element={<Liability />} />
-            <Route path='/quote' element={<Quote />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </RouteContainer>
+        <ScrollableContainer>
+          <RouteContainer>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/products' element={<Products />} />
+              <Route path='/carriers' element={<Carriers />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='/liability' element={<Liability />} />
+              <Route path='/quote' element={<Quote />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </RouteContainer>
+        </ScrollableContainer>
         </Root>
       </BrowserRouter>
     </ThemeProvider>
