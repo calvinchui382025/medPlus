@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/medPlus/static/css/main.073c9b0a.css",
+    "main.js": "/medPlus/static/js/main.8a9e4961.js",
+    "static/js/787.da58f20c.chunk.js": "/medPlus/static/js/787.da58f20c.chunk.js",
+    "index.html": "/medPlus/index.html",
+    "main.073c9b0a.css.map": "/medPlus/static/css/main.073c9b0a.css.map",
+    "main.8a9e4961.js.map": "/medPlus/static/js/main.8a9e4961.js.map",
+    "787.da58f20c.chunk.js.map": "/medPlus/static/js/787.da58f20c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.8a9e4961.js"
+  ]
+}
