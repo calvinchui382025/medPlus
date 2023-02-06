@@ -7,6 +7,7 @@ import { Header } from './components';
 import { Home,  About, Carriers, Contact, Liability, Products, Quote } from './Pages';
 import { styled } from '@mui/system';
 //======================================================
+export const mainColor = '#4682b4';
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -14,7 +15,7 @@ const darkTheme = createTheme({
       default: "darkgrey"
     },
     primary: {
-      main: '#4682b4',
+      main: mainColor,
     },
     secondary: {
       main: '#00e676',
@@ -29,7 +30,7 @@ const lightTheme = createTheme({
       // default: "lightgrey"
     },
     primary: {
-      main: '#4682b4',
+      main: mainColor,
     },
     secondary: {
       main: '#00e676',
