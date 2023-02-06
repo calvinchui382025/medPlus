@@ -1,6 +1,5 @@
 import { Card, List, ListItem, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import React from 'react'
 import { useInView } from 'react-intersection-observer';
 import { Image } from 'mui-image'
 import { animateProps, commercialList, moveLeftAnimation, moveRightAnimation, personalList, professionalList1, professionalList2 } from '../../utils/constants';

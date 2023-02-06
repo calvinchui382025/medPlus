@@ -1,9 +1,5 @@
 import { SvgIcon } from '@mui/material';
-import React from 'react';
 //======================================================
-
-//======================================================
-
 export const MedPlusLogoColor = '#015594';
 //======================================================
 export const MedPlusLogo = (props: any) => {

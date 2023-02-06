@@ -1,4 +1,3 @@
-import React from 'react'
 import { Root } from '../../styled-components'
 import { Card, styled } from '@mui/material'
 
