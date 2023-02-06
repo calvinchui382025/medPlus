@@ -1,15 +1,23 @@
 {
   "files": {
     "main.css": "/medPlus/static/css/main.073c9b0a.css",
-    "main.js": "/medPlus/static/js/main.8a9e4961.js",
+    "main.js": "/medPlus/static/js/main.06d8e056.js",
     "static/js/787.da58f20c.chunk.js": "/medPlus/static/js/787.da58f20c.chunk.js",
+    "static/media/homestock.jpg": "/medPlus/static/media/homestock.fa266ccb359a070ee252.jpg",
+    "static/media/personal_products.jpg": "/medPlus/static/media/personal_products.c811ada85ee2c4791064.jpg",
+    "static/media/photo-dennis_borne-lg.jpg": "/medPlus/static/media/photo-dennis_borne-lg.89eaf05df94a054213de.jpg",
+    "static/media/photo-karen_jiminez-lg.jpg": "/medPlus/static/media/photo-karen_jiminez-lg.e601f89e53ec4b6e1a98.jpg",
+    "static/media/photo-peter_doyle-lg.jpg": "/medPlus/static/media/photo-peter_doyle-lg.03b40ba8175c0248df4f.jpg",
+    "static/media/professional_liability.jpg": "/medPlus/static/media/professional_liability.f33c254232e155e0bf82.jpg",
+    "static/media/commercial_products.jpg": "/medPlus/static/media/commercial_products.b55c73b87fc7ae75274c.jpg",
+    "static/media/footer-saying.jpg": "/medPlus/static/media/footer-saying.e39b6ee5e5eec058a119.jpg",
     "index.html": "/medPlus/index.html",
     "main.073c9b0a.css.map": "/medPlus/static/css/main.073c9b0a.css.map",
-    "main.8a9e4961.js.map": "/medPlus/static/js/main.8a9e4961.js.map",
+    "main.06d8e056.js.map": "/medPlus/static/js/main.06d8e056.js.map",
     "787.da58f20c.chunk.js.map": "/medPlus/static/js/787.da58f20c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.8a9e4961.js"
+    "static/js/main.06d8e056.js"
   ]
 }
