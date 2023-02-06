@@ -37,6 +37,10 @@ const ProfessionalTextWrapper = styled(TextWrapper)<animateProps>(({animate}) =>
     animation: animate ? `${moveRightAnimation} 1s` : 'none',
   })
 )
+const OutlinedListItem = styled(ListItem)({
+  // thin border
+  // border: '1px solid grey',
+})
 //======================================================
 const MediumText = styled(Typography)({
   fontSize: '1rem',
@@ -57,6 +61,7 @@ const SmallText = styled(Typography)({
 const CommercialImage = styled('img')<animateProps>(({animate}) => ({
   animation: animate ? `${moveRightAnimation} 1s` : 'none',
   width: '100%',
+  boxShadow: niceBoxShadow,
   })
 )
 const CommercialTopText = styled(MediumText)<animateProps>(({animate}) => ({
@@ -70,6 +75,7 @@ const CommercialList = styled(List)<animateProps>(({animate}) => ({
 const PersonalImage = styled('img')<animateProps>(({animate}) => ({
     animation: animate ? `${moveLeftAnimation} 1s` : 'none',
     width: '100%',
+    boxShadow: niceBoxShadow,
   })
 )
 const PersonalTopText = styled(MediumText)<animateProps>(({animate}) => ({
@@ -83,6 +89,7 @@ const PersonalList = styled(List)<animateProps>(({animate}) => ({
 const ProfessionalImage = styled('img')<animateProps>(({animate}) => ({
     animation: animate ? `${moveRightAnimation} 1s` : 'none',
     width: '100%',
+    boxShadow: niceBoxShadow,
   })
 )
 const ProfessionalTopText = styled(MediumText)<animateProps>(({animate}) => ({
@@ -133,11 +140,11 @@ export const Products = () => {
               <CommercialList dense>
                 {commercialList.map((item, index) => {
                   return (
-                    <ListItem key={index}>
+                    <OutlinedListItem key={index}>
                       <SmallText variant='body2'>
                         {item}
                       </SmallText>
-                    </ListItem>
+                    </OutlinedListItem>
                   )
                 })}
               </CommercialList>
@@ -169,11 +176,11 @@ export const Products = () => {
               <PersonalList dense>
                 {personalList.map((item, index) => {
                   return (
-                    <ListItem key={index} style={{display: 'flex', justifyContent: 'flex-end', textAlign: 'right'}} >
+                    <OutlinedListItem key={index} style={{display: 'flex', justifyContent: 'flex-end', textAlign: 'right'}} >
                       <SmallText variant='body2'>
                         {item}
                       </SmallText>
-                    </ListItem>
+                    </OutlinedListItem>
                   )
                 })}
               </PersonalList>
@@ -195,11 +202,11 @@ export const Products = () => {
               <ProfessionalList1 dense>
                 {professionalList1.map((item, index) => {
                   return (
-                    <ListItem key={index}>
+                    <OutlinedListItem key={index}>
                       <SmallText variant='body2'>
                         {item}
                       </SmallText>
-                    </ListItem>
+                    </OutlinedListItem>
                   )
                 })}
               </ProfessionalList1>
@@ -211,11 +218,11 @@ export const Products = () => {
               <ProfessionalList2 dense>
                 {professionalList2.map((item, index) => {
                   return (
-                    <ListItem key={index}>
+                    <OutlinedListItem key={index}>
                       <SmallText variant='body2'>
                         {item}
                       </SmallText>
-                    </ListItem>
+                    </OutlinedListItem>
                   )
                 })}
               </ProfessionalList2>
