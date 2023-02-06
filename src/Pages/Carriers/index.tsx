@@ -53,11 +53,9 @@ export const Carriers = () => {
                       <CarrierDetailsWrapper>
                         <CarrierDescription variant='body1'>{description}</CarrierDescription>
                         <CarrierRating variant='button' style={{color: ratingColor ? ratingColor : ''}}>{rating}</CarrierRating>
-                        {url && url?.length > 0 && (
-                          <CarrierLink href={url} target='_blank'>
-                            {url}
+                          <CarrierLink href={url?.length > 0 ? url : `https://www.google.com/search?q=${name.split(' ').join('+')}`} target='_blank'>
+                            {url ? url : name}
                           </CarrierLink>
-                        )}
                       </CarrierDetailsWrapper>
                     </Collapse>
                   </CarrierListItem>
