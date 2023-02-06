@@ -27,14 +27,18 @@ const InfoContainer = styled('div')(({theme}) => ({
   '@media (max-width: 768px)': {
     flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 }));
 const RatingInfoContainer = styled('div')(({theme}) => ({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'flex-start',
+  alignItems: 'center',
   width: '33%',
   minWidth: '350px',
+}));
+const RatingList = styled(List)(({theme}) => ({
+  width: '100%',
 }));
 const leftTextProps = {
   fontSize: '0.8rem',
@@ -160,7 +164,7 @@ export const Carriers = () => {
 
           <RatingInfoContainer>
             <Typography variant='h6'>Understanding Best’s Insurer Financial Strength Ratings</Typography>
-            <List>
+            <RatingList>
               <ListItem>
                 <RatingListItemTextLeft primaryTypographyProps={{...leftTextProps, color: 'green'}}>A++, A+</RatingListItemTextLeft>
                 <RatingListItemTextRight primaryTypographyProps={{...rightTextProps, color: 'green'}}>Superior</RatingListItemTextRight>
@@ -223,7 +227,7 @@ export const Carriers = () => {
                 <RatingListItemTextLeft primaryTypographyProps={{...leftTextProps, color: '#2b76c3'}}>NR-5</RatingListItemTextLeft>
                 <RatingListItemTextRight primaryTypographyProps={{...rightTextProps, color: '#2b76c3'}}>Not Formally Followed</RatingListItemTextRight>
               </ListItem>
-            </List>
+            </RatingList>
           </RatingInfoContainer>
         </InfoContainer>
 
