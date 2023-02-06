@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import NavBar, { NavBarTypes } from '../NavBar';
 
 const HeaderContainer = styled('div')({
