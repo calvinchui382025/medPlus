@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Root } from '../../styled-components'
 import { Box, styled } from '@mui/system'
 import { Button, Card } from '@mui/material'
@@ -10,12 +10,17 @@ import { useInView } from 'react-intersection-observer';
 import { animateProps } from '../../utils/constants';
 import { HomeCards } from '../../utils/constants';
 //======================================================
-const Imagebox = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-around',
-  flexDirection: 'row',
-  animation: `${moveDownAnimation} 2s`,
-})
+interface ImageboxProps {
+  height: number
+}
+const Imagebox = styled('div')<ImageboxProps>(({height}) => ({
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    animation: `${moveDownAnimation} 2s`,
+    minHeight: height,
+  })
+)
 
 const ProductCardsContainer = styled('div')({
   display: 'flex',
@@ -52,7 +57,7 @@ const ProductCard = styled(Card)({
 })
 //======================================================
 export const Home = () => {
-
+  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth)
   const [cardHovered, setCardHovered] = useState<string>('')
 
   const handleCardClicked = (cardTitle: any) => {
@@ -63,9 +68,17 @@ export const Home = () => {
     setCardHovered(cardTitle);
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <Root>
-      <Imagebox>
+      <Imagebox height={windowWidth / 2.334}>
         <img
           src="/images/homestock.jpg"
           style={{height: '100%', width: '100%'}}
@@ -89,25 +102,6 @@ export const Home = () => {
           )
         })
         }
-        {/* <ProductCard onClick={handleProfessionalClick} onMouseOver={() => {}}>
-          <VolunteerActivismIcon sx={{fontSize: 60}} />
-          <strong>Professional Liability Insurance</strong>
-          <p>The medical profession is more challenged today by medical malpractice than it has been at any other point in history. You'd like to think it will never happen to you, but unfortunately, it can. MedPLUS offers several liability coverage options that can protect you and your practice from the devastating effects of a lawsuit. Depending on the insurance carrier, professional liability insurance coverage includes the following:</p>
-        </ProductCard>
-        
-
-        <ProductCard onClick={handleCommercialClick}>
-          <LocalLibraryIcon sx={{fontSize: 60 }} />
-          <strong>Commercial Insurance Products</strong>
-          <p>Our experienced staff is committed to delivering commercial products tailored to meet your professional needs. We are ready to work with you to develop a program that makes sense for you and your employees. Our wide variety of services and lines of coverage include, but are not limited to, the following:</p>
-        </ProductCard>
-
-        <ProductCard onClick={handlePersonalClick}>
-          <Diversity1Icon sx={{fontSize: 60}} />
-          <strong>Personal Insurance Products</strong>
-          <p>Life and health insurance have many variables and decisions. How much coverage is enough and what type of policy is best for you and your family are just two of the questions that might arise. After determining your personal product needs, our agency will provide you with the most comprehensive plan with the greatest value for you and your family. We specialize in a wide variety of services and lines of coverage that include, but are not limited to, the following:</p>
-        </ProductCard> */}
-
       </ProductCardsContainer>
 
     </Root>
