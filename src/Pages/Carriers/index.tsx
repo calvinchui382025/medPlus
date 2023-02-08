@@ -41,7 +41,7 @@ export const Carriers = () => {
                 const ratingValue = rating.split(' ').slice(-1);
                 const ratingColor = CarrierRatingColorObj[ratingValue[0]];
                 return (
-                  <CarrierListItem>
+                  <CarrierListItem key={index}>
                     <CarrierListButton 
                       onClick={() => handleCardClicked(name)}
                     >
