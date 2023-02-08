@@ -4,9 +4,12 @@ import GoogleMapReact from 'google-map-react'
 import { useEffect, useState } from 'react'
 import Footer from '../../components/Footer'
 import { Root } from '../../styled-components'
-import { niceBoxShadow } from '../../utils/constants'
+import { animateProps, contactFadeIn, contactFadeOut, fadeIn, fadeOut, moveDownAnimation, moveLeftAnimation, moveRightAnimation, niceBoxShadow } from '../../utils/constants'
 import { mapStyles } from './mapStyles'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { PropagateLoader } from 'react-spinners';
+import { mainColor } from '../../App'
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 //============================================================================== 
 const designationList = [
   'C.C.P.',
@@ -54,15 +57,17 @@ const CardsContainer = styled('div')({
 
   },
 })
-const BackgroundCard = styled(Card)({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  boxShadow: niceBoxShadow,
-  borderRadius: '16px',
-  backgroundColor: '#1d1c1d',
-  width: '100%',
-})
+const BackgroundCard = styled(Card)<animateProps>(({animate}) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    boxShadow: niceBoxShadow,
+    borderRadius: '16px',
+    backgroundColor: '#1d1c1d',
+    width: '100%',
+    animation: `${moveRightAnimation} 2s`,
+  })
+)
 const BackgroundCardHeader = styled('div')({
   width: '100%',
   minHeight: '48px',
@@ -87,25 +92,31 @@ const BackgroundCardFootText = styled(Typography)({
   fontWeight: 'bold',
   color: 'gainsboro',
 })
-const ContactCard = styled(Card)({
-  width: '100%',
-  maxWidth: '400px',
-  height: '600px',
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '1rem',
-  borderRadius: '16px',
-  boxShadow: niceBoxShadow,
-  position: 'absolute',
-  top: '230px',
-  right: '100px',
-  zIndex: 2,
-  marginBottom: '12px',
+const ContactCard = styled(Card)<animateProps>(({animate}) => ({
+    width: '100%',
+    maxWidth: '400px',
+    
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '1rem',
+    borderRadius: '16px',
+    boxShadow: niceBoxShadow,
+    position: 'absolute',
+    top: '230px',
+    right: '100px',
+    zIndex: 2,
+    marginBottom: '12px',
 
-  '@media (max-width: 600px)': {
-    position: 'inherit'
-  },
-})
+    height: animate ? '100px' : '600px',
+    animation: `${moveDownAnimation} 2s`,
+    transition: 'all 1s ease-in-out',
+    // animation: animate ? `${moveLeftAnimation} 2s` : 'none',
+
+    '@media (max-width: 600px)': {
+      position: 'inherit'
+    },
+  })
+)
 const StyledMuiFormControl = styled(FormControl)({
   width: '90%',
     '& .MuiFormLabel-root': {
@@ -130,30 +141,48 @@ const StyledTextField = styled(TextField)({
     fontWeight: '700',
   },
 })
-const SubmitButton = styled(Button)({
-
-})
-const ContactHeader = styled('div')({
-  height: '48px',
-  padding: '12px',
-})
+const SubmitButton = styled(Button)<animateProps>(({animate}) => ({
+    animation: animate ? `${contactFadeOut} 1s` : `${contactFadeIn} 3s`,
+    opacity: animate ? 0 : 1,
+    transition: 'all 3s ease-in-out',
+  })
+)
+const ContactHeader = styled('div')<animateProps>(({animate}) => ({
+    padding: '12px',
+    display: 'flex',
+    animation: animate ? `${contactFadeOut} 1s` : `${contactFadeIn} 2s`,
+    opacity: animate ? 0 : 1,
+    height: animate ? '0px' : '48px',
+    transition: 'all 0.2s ease-in-out',
+  })
+)
 const ContactFormText = styled(Typography)({
   fontSize: '0.7rem',
   fontWeight: 'bold',
 })
-const ContactFormContainer = styled('div')({
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-evenly',
-  alignItems: 'center',
-})
-const SubmitContainer = styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-end',
-  padding: '12px',
-})
+const ContactFormContainer = styled('div')<animateProps>(({animate}) => ({
+    
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+
+    height: animate ? '0px' : '100%',
+    transition: 'all 1s ease-in-out',
+    animation: animate ? `${contactFadeOut} 1s` : `${contactFadeIn} 1s`,
+    opacity: animate ? 0 : 1,
+  })
+)
+const SubmitContainer = styled('div')<animateProps>(({animate}) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: '12px',
+    height: animate ? '0px' : '',
+    transition: 'all 1s ease-in-out',
+    width: animate ? '0px' : '100%',
+  })
+)
 const MarkerTextContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
@@ -168,6 +197,28 @@ const MarkerTextContainer = styled('div')({
 const MarkerText = styled(Typography)({
 
 })
+
+const FillerContainer = styled('div')<animateProps>(({animate}) =>({
+    width: '100%',
+  })
+)
+const SpinnerContainer = styled('div')<animateProps>(({animate}) =>({
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      // backgroundColor: 'orange',
+      position: 'relative',
+      left: '-12px',
+      top: '-9px',
+  })
+)
+
+const SubmitButtonContainer = styled('div')<animateProps>(({animate}) =>({
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+  })
+)
 //============================================================================== 
 const MyMarker = ({ text }: any) => (
   <MarkerTextContainer>
@@ -186,6 +237,9 @@ export const Contact = () => {
   const [howCanWeHelpYou, setHowCanWeHelpYou] = useState<string>('')
   const [designation, setDesignation] = useState<any>()
 
+  const [loading, setLoading] = useState<boolean>(false);
+  const [response, setResponse] = useState<boolean>(false);
+
   useEffect(() => {
 
   }, [])
@@ -199,7 +253,20 @@ export const Contact = () => {
       howCanWeHelpYou,
       designation,
     })
-  }
+
+    // window.location.href=`mailto:info@medplusllc.com`
+    setLoading(!loading);
+    setResponse(true);
+    
+    // setLoading(true);
+    setTimeout(() => {  
+      setResponse(false);
+    }, 3000);
+    setTimeout(() => {
+      setLoading(false);
+    }, 6000);
+      
+}
 
   const handleMarkerClick = () => {
     console.log('clicked')
@@ -212,16 +279,15 @@ export const Contact = () => {
     <ContactRoot>
       <CardsContainer>
 
-      <ContactCard>
-          <ContactHeader>
+      <ContactCard animate={loading}>
+          <ContactHeader animate={loading === true}>
             <ContactFormText variant='button'>Contact Form</ContactFormText>
           </ContactHeader>
-          <ContactFormContainer>
+          <ContactFormContainer animate={loading === true}>
             <StyledTextField
               size='small'
               required
               label="Name"
-              defaultValue="Hello World"
               variant="standard"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -230,7 +296,6 @@ export const Contact = () => {
               size='small'
               required
               label="Email"
-              defaultValue="Hello World"
               variant="standard"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -239,7 +304,6 @@ export const Contact = () => {
               size='small'
               required
               label="Phone Number"
-              defaultValue="Hello World"
               variant="standard"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
@@ -280,8 +344,7 @@ export const Contact = () => {
               size='small'
               required
               multiline
-              label="How can we help you?"
-              defaultValue="Hello World"
+              label="Message"
               variant="standard"
               value={howCanWeHelpYou}
               // rows={4}
@@ -289,7 +352,37 @@ export const Contact = () => {
             />
           </ContactFormContainer>
           <SubmitContainer>
-            <SubmitButton variant="contained" onClick={handleSubmit}>Submit</SubmitButton>
+            <FillerContainer />
+
+            <SpinnerContainer animate={response === true}>
+              <PropagateLoader 
+                loading={response}
+                color={mainColor}
+              />
+              {loading === true && response === false && (
+                // <Typography variant="h6">Sent!</Typography>
+                <DoneOutlineIcon 
+                  fontSize='large'
+                  style={{
+                    color: mainColor,
+                    position: 'relative',
+                    left: '10px',
+                    top: '-10px',
+                  }}
+                />
+              )}
+            </SpinnerContainer>
+
+            <SubmitButtonContainer>
+              <SubmitButton 
+                // disabled={loading} 
+                variant="contained" 
+                onClick={handleSubmit}
+                animate={loading === true}
+              >
+                Send
+              </SubmitButton>
+            </SubmitButtonContainer>
           </SubmitContainer>
         </ContactCard>
 
@@ -332,9 +425,6 @@ export const Contact = () => {
           </BackgroundCardFooter>
 
         </BackgroundCard>
-
-        
-
       </CardsContainer>
       <Footer />
     </ContactRoot>
