@@ -4,7 +4,7 @@ import GoogleMapReact from 'google-map-react'
 import { useEffect, useState } from 'react'
 import Footer from '../../components/Footer'
 import { Root } from '../../styled-components'
-import { animateProps, moveLeftAnimation, moveRightAnimation, niceBoxShadow } from '../../utils/constants'
+import { animateProps, fadeIn, fadeOut, moveDownAnimation, moveLeftAnimation, moveRightAnimation, niceBoxShadow } from '../../utils/constants'
 import { mapStyles } from './mapStyles'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 //============================================================================== 
@@ -103,7 +103,9 @@ const ContactCard = styled(Card)<animateProps>(({animate}) => ({
     right: '100px',
     zIndex: 2,
     marginBottom: '12px',
-    animation: `${moveLeftAnimation} 2s`,
+    animation: `${moveDownAnimation} 2s`,
+    transition: 'all 2s ease-in-out',
+    // animation: animate ? `${moveLeftAnimation} 2s` : 'none',
 
     '@media (max-width: 600px)': {
       position: 'inherit'
@@ -137,21 +139,28 @@ const StyledTextField = styled(TextField)({
 const SubmitButton = styled(Button)({
 
 })
-const ContactHeader = styled('div')({
-  height: '48px',
-  padding: '12px',
-})
+const ContactHeader = styled('div')<animateProps>(({animate}) => ({
+    height: '48px',
+    padding: '12px',
+    display: 'flex',
+    animation: animate ? `${fadeOut} 1s` : `${fadeIn} 1s`,
+    opacity: animate ? 0 : 1,
+  })
+)
 const ContactFormText = styled(Typography)({
   fontSize: '0.7rem',
   fontWeight: 'bold',
 })
-const ContactFormContainer = styled('div')({
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-evenly',
-  alignItems: 'center',
-})
+const ContactFormContainer = styled('div')<animateProps>(({animate}) => ({
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    animation: animate ? `${fadeOut} 1s` : `${fadeIn} 1s`,
+    opacity: animate ? 0 : 1,
+  })
+)
 const SubmitContainer = styled('div')({
   display: 'flex',
   flexDirection: 'row',
@@ -190,6 +199,8 @@ export const Contact = () => {
   const [howCanWeHelpYou, setHowCanWeHelpYou] = useState<string>('')
   const [designation, setDesignation] = useState<any>()
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
 
   }, [])
@@ -203,7 +214,16 @@ export const Contact = () => {
       howCanWeHelpYou,
       designation,
     })
-  }
+
+    // window.location.href=`mailto:info@medplusllc.com`
+    setLoading(!loading);
+    
+    // setLoading(true);
+    // setTimeout(() => {  
+    //   setLoading(false);
+    // }, 4000);
+      
+}
 
   const handleMarkerClick = () => {
     console.log('clicked')
@@ -216,11 +236,11 @@ export const Contact = () => {
     <ContactRoot>
       <CardsContainer>
 
-      <ContactCard>
-          <ContactHeader>
+      <ContactCard animate={loading}>
+          <ContactHeader animate={loading === true}>
             <ContactFormText variant='button'>Contact Form</ContactFormText>
           </ContactHeader>
-          <ContactFormContainer>
+          <ContactFormContainer animate={loading === true}>
             <StyledTextField
               size='small'
               required
