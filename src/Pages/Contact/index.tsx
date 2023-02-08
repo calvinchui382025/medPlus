@@ -4,9 +4,11 @@ import GoogleMapReact from 'google-map-react'
 import { useEffect, useState } from 'react'
 import Footer from '../../components/Footer'
 import { Root } from '../../styled-components'
-import { animateProps, fadeIn, fadeOut, moveDownAnimation, moveLeftAnimation, moveRightAnimation, niceBoxShadow } from '../../utils/constants'
+import { animateProps, contactFadeIn, contactFadeOut, fadeIn, fadeOut, moveDownAnimation, moveLeftAnimation, moveRightAnimation, niceBoxShadow } from '../../utils/constants'
 import { mapStyles } from './mapStyles'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { PropagateLoader } from 'react-spinners';
+import { mainColor } from '../../App'
 //============================================================================== 
 const designationList = [
   'C.C.P.',
@@ -92,7 +94,7 @@ const BackgroundCardFootText = styled(Typography)({
 const ContactCard = styled(Card)<animateProps>(({animate}) => ({
     width: '100%',
     maxWidth: '400px',
-    height: '600px',
+    
     display: 'flex',
     flexDirection: 'column',
     padding: '1rem',
@@ -103,8 +105,10 @@ const ContactCard = styled(Card)<animateProps>(({animate}) => ({
     right: '100px',
     zIndex: 2,
     marginBottom: '12px',
+
+    height: animate ? '100px' : '600px',
     animation: `${moveDownAnimation} 2s`,
-    transition: 'all 2s ease-in-out',
+    transition: 'all 1s ease-in-out',
     // animation: animate ? `${moveLeftAnimation} 2s` : 'none',
 
     '@media (max-width: 600px)': {
@@ -136,15 +140,19 @@ const StyledTextField = styled(TextField)({
     fontWeight: '700',
   },
 })
-const SubmitButton = styled(Button)({
-
-})
+const SubmitButton = styled(Button)<animateProps>(({animate}) => ({
+    animation: animate ? `${contactFadeOut} 1s` : `${contactFadeIn} 3s`,
+    opacity: animate ? 0 : 1,
+      // transition: 'all 3s ease-in-out',
+  })
+)
 const ContactHeader = styled('div')<animateProps>(({animate}) => ({
-    height: '48px',
     padding: '12px',
     display: 'flex',
-    animation: animate ? `${fadeOut} 1s` : `${fadeIn} 1s`,
+    animation: animate ? `${contactFadeOut} 1s` : `${contactFadeIn} 1s`,
     opacity: animate ? 0 : 1,
+    height: animate ? '0px' : '48px',
+    transition: 'all 0.2s ease-in-out',
   })
 )
 const ContactFormText = styled(Typography)({
@@ -152,21 +160,29 @@ const ContactFormText = styled(Typography)({
   fontWeight: 'bold',
 })
 const ContactFormContainer = styled('div')<animateProps>(({animate}) => ({
-    height: '100%',
+    
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    animation: animate ? `${fadeOut} 1s` : `${fadeIn} 1s`,
+
+    height: animate ? '0px' : '100%',
+    transition: 'all 1s ease-in-out',
+    animation: animate ? `${contactFadeOut} 1s` : `${contactFadeIn} 1s`,
     opacity: animate ? 0 : 1,
   })
 )
-const SubmitContainer = styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-end',
-  padding: '12px',
-})
+const SubmitContainer = styled('div')<animateProps>(({animate}) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    padding: '12px',
+    // animation: animate ? `${contactFadeOut} 1s` : `${contactFadeIn} 1s`,
+    // opacity: animate ? 0 : 1,
+    height: animate ? '0px' : '',
+    transition: 'all 1s ease-in-out',
+  })
+)
 const MarkerTextContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
@@ -219,9 +235,9 @@ export const Contact = () => {
     setLoading(!loading);
     
     // setLoading(true);
-    // setTimeout(() => {  
-    //   setLoading(false);
-    // }, 4000);
+    setTimeout(() => {  
+      setLoading(false);
+    }, 4000);
       
 }
 
@@ -245,7 +261,6 @@ export const Contact = () => {
               size='small'
               required
               label="Name"
-              defaultValue="Hello World"
               variant="standard"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -254,7 +269,6 @@ export const Contact = () => {
               size='small'
               required
               label="Email"
-              defaultValue="Hello World"
               variant="standard"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -263,7 +277,6 @@ export const Contact = () => {
               size='small'
               required
               label="Phone Number"
-              defaultValue="Hello World"
               variant="standard"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
@@ -304,8 +317,7 @@ export const Contact = () => {
               size='small'
               required
               multiline
-              label="How can we help you?"
-              defaultValue="Hello World"
+              label="Message"
               variant="standard"
               value={howCanWeHelpYou}
               // rows={4}
@@ -313,7 +325,14 @@ export const Contact = () => {
             />
           </ContactFormContainer>
           <SubmitContainer>
-            <SubmitButton variant="contained" onClick={handleSubmit}>Submit</SubmitButton>
+            <SubmitButton 
+              // disabled={loading} 
+              variant="contained" 
+              onClick={handleSubmit}
+              animate={loading === true}
+            >
+              Send
+            </SubmitButton>
           </SubmitContainer>
         </ContactCard>
 

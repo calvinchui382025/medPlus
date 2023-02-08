@@ -71,6 +71,24 @@ export const fadeIn = keyframes`
     opacity: 1;
   }
 `
+
+export const contactFadeOut = keyframes`
+0%    {
+  opacity: 1;
+  }
+  100%  {
+    opacity: 0;
+  }
+`
+
+export const contactFadeIn = keyframes`
+0%    {
+  opacity: 0;
+  }
+  100%  {
+    opacity: 1;
+  }
+`
 //======================================================
 export const commercialList = [
   'Commercial property and general liability',
