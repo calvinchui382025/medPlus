@@ -4,7 +4,7 @@ import GoogleMapReact from 'google-map-react'
 import { useEffect, useState } from 'react'
 import Footer from '../../components/Footer'
 import { Root } from '../../styled-components'
-import { niceBoxShadow } from '../../utils/constants'
+import { animateProps, moveLeftAnimation, moveRightAnimation, niceBoxShadow } from '../../utils/constants'
 import { mapStyles } from './mapStyles'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 //============================================================================== 
@@ -54,15 +54,17 @@ const CardsContainer = styled('div')({
 
   },
 })
-const BackgroundCard = styled(Card)({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  boxShadow: niceBoxShadow,
-  borderRadius: '16px',
-  backgroundColor: '#1d1c1d',
-  width: '100%',
-})
+const BackgroundCard = styled(Card)<animateProps>(({animate}) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    boxShadow: niceBoxShadow,
+    borderRadius: '16px',
+    backgroundColor: '#1d1c1d',
+    width: '100%',
+    animation: `${moveRightAnimation} 2s`,
+  })
+)
 const BackgroundCardHeader = styled('div')({
   width: '100%',
   minHeight: '48px',
@@ -87,25 +89,27 @@ const BackgroundCardFootText = styled(Typography)({
   fontWeight: 'bold',
   color: 'gainsboro',
 })
-const ContactCard = styled(Card)({
-  width: '100%',
-  maxWidth: '400px',
-  height: '600px',
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '1rem',
-  borderRadius: '16px',
-  boxShadow: niceBoxShadow,
-  position: 'absolute',
-  top: '230px',
-  right: '100px',
-  zIndex: 2,
-  marginBottom: '12px',
+const ContactCard = styled(Card)<animateProps>(({animate}) => ({
+    width: '100%',
+    maxWidth: '400px',
+    height: '600px',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '1rem',
+    borderRadius: '16px',
+    boxShadow: niceBoxShadow,
+    position: 'absolute',
+    top: '230px',
+    right: '100px',
+    zIndex: 2,
+    marginBottom: '12px',
+    animation: `${moveLeftAnimation} 2s`,
 
-  '@media (max-width: 600px)': {
-    position: 'inherit'
-  },
-})
+    '@media (max-width: 600px)': {
+      position: 'inherit'
+    },
+  })
+)
 const StyledMuiFormControl = styled(FormControl)({
   width: '90%',
     '& .MuiFormLabel-root': {
