@@ -42,21 +42,24 @@ const ContactRoot = styled(Root)({
   alignItems: 'center',
   backgroundColor: 'gainsboro',
 });
-const CardsContainer = styled('div')({
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  padding: '200px 48px',
-  margin: '0px',
+const CardsContainer = styled('div')(({theme}) => ({
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: '200px 48px',
+    margin: '0px',
 
-  '@media (max-width: 600px)': {
-    flexDirection: 'column',
-    padding: '12px'
+    '@media (max-width: 600px)': {
+      flexDirection: 'column',
+      padding: '12px'
 
-  },
-})
+    },
+    // @ts-ignore
+    backgroundColor: theme?.palette.background.paper,
+  })
+)
 const BackgroundCard = styled(Card)<animateProps>(({animate}) => ({
     display: 'flex',
     flexDirection: 'column',
