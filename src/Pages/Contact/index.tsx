@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import { Button, Card, MenuItem, Select, TextField, Typography } from '@mui/material'
+import { Button, Card, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import GoogleMapReact from 'google-map-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Footer from '../../components/Footer'
 import { Root } from '../../styled-components'
 import { niceBoxShadow } from '../../utils/constants'
@@ -47,6 +47,12 @@ const CardsContainer = styled('div')({
   justifyContent: 'center',
   padding: '200px 48px',
   margin: '0px',
+
+  '@media (max-width: 600px)': {
+    flexDirection: 'column',
+    padding: '12px'
+
+  },
 })
 const BackgroundCard = styled(Card)({
   display: 'flex',
@@ -57,7 +63,6 @@ const BackgroundCard = styled(Card)({
   backgroundColor: '#1d1c1d',
   width: '100%',
 })
-
 const BackgroundCardHeader = styled('div')({
   width: '100%',
   minHeight: '48px',
@@ -66,6 +71,7 @@ const BackgroundCardHeader = styled('div')({
 const BackgroundImageContainer = styled('div')({
   width: '100%',
   height: '100%',
+  minHeight: '200px',
 })
 const BackgroundCardFooter = styled('div')({
   width: '100%',
@@ -91,14 +97,30 @@ const ContactCard = styled(Card)({
   borderRadius: '16px',
   boxShadow: niceBoxShadow,
   position: 'absolute',
-  top: '-100px',
-  left: '-100px',
+  top: '230px',
+  right: '100px',
+  zIndex: 2,
+  marginBottom: '12px',
+
+  '@media (max-width: 600px)': {
+    position: 'inherit'
+  },
+})
+const StyledMuiFormControl = styled(FormControl)({
+  width: '90%',
+    '& .MuiFormLabel-root': {
+      fontSize: '12px',
+      fontWeight: '700',
+      left: '-14px',
+      top: '26px',
+  },
 })
 const StyledDropdowns = styled(Select)({
-  width: '90%',
+  // width: '90%',
   height: '48px',
   fontSize: '12px',
   fontWeight: '700',
+
 })
 const StyledTextField = styled(TextField)({
   width: '90%',
@@ -160,9 +182,13 @@ export const Contact = () => {
   const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [phoneNumber, setPhoneNumber] = useState<string>('')
-  const [preferredMethodOfContact, setPreferredMethodOfContact] = useState<any>(contactMethods[0])
+  const [preferredMethodOfContact, setPreferredMethodOfContact] = useState<any>('')
   const [howCanWeHelpYou, setHowCanWeHelpYou] = useState<string>('')
-  const [designation, setDesignation] = useState<any>(designationList[0])
+  const [designation, setDesignation] = useState<any>()
+
+  useEffect(() => {
+
+  }, [])
 
   const handleSubmit = () => {
     console.log({
@@ -185,46 +211,8 @@ export const Contact = () => {
   return (
     <ContactRoot>
       <CardsContainer>
-        <BackgroundCard>
-          <BackgroundCardHeader />
-          <BackgroundImageContainer>
-            <GoogleMapReact
-              bootstrapURLKeys={{ key: String(apiKey) }}
-              
-              defaultCenter={mapCenter}
-              // zoom={14}
-              defaultZoom={15}
-              options={{
-                disableDefaultUI: true,
-                styles: mapStyles
-              }}
-              onClick={handleMarkerClick}
-            >
-              <MyMarker
-                lat={medPlusLatLong.lat}
-                lng={medPlusLatLong.lng}
-                text="MedPlus LLC"
-              />
-            </GoogleMapReact>
-          </BackgroundImageContainer>
-          <BackgroundCardFooter >
-            <BackgroundCardFootText variant='body2'>
-              866.995.1842 Toll Free
-            </BackgroundCardFootText>
-            <BackgroundCardFootText variant='body2'>
-              713.995.1842 Local
-            </BackgroundCardFootText>
-            <BackgroundCardFootText variant='body2'>
-              713.995.0692 Fax
-            </BackgroundCardFootText>
-            <BackgroundCardFootText variant='body2'>
-              info@medplusllc.com
-              </BackgroundCardFootText>
-          </BackgroundCardFooter>
 
-        </BackgroundCard>
-
-        {/* <ContactCard>
+      <ContactCard>
           <ContactHeader>
             <ContactFormText variant='button'>Contact Form</ContactFormText>
           </ContactHeader>
@@ -256,31 +244,38 @@ export const Contact = () => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
-            <StyledDropdowns
-              label="Preferred Method of Contact"
-              value={preferredMethodOfContact}
-              onChange={(e) => setPreferredMethodOfContact(e.target.value)}
-              variant="standard"
-              size='small'
-            >
-              {contactMethods.map((method) => {
-                return <MenuItem value={method}>{method}</MenuItem>
-              })
-              }
-            </StyledDropdowns>
-            <StyledDropdowns
-              label="Designation"
-              value={designation}
-              onChange={(e) => setDesignation(e.target.value)}
-              variant="standard"
-              size='small'
-            >
-              {
-                designationList.map((designation) => {
-                  return <MenuItem value={designation}>{designation}</MenuItem>
+            <StyledMuiFormControl fullWidth size='small'>
+              <InputLabel>Preferred Method Of Contact</InputLabel>
+              <StyledDropdowns
+                label="Preferred Method of Contact"
+                value={preferredMethodOfContact}
+                onChange={(e) => setPreferredMethodOfContact(e.target.value)}
+                variant="standard"
+                size='small'
+                >
+                {contactMethods.map((method) => {
+                  return <MenuItem value={method}>{method}</MenuItem>
                 })
               }
-            </StyledDropdowns>
+              </StyledDropdowns>
+            </StyledMuiFormControl>
+            <StyledMuiFormControl fullWidth size='small'>
+            <InputLabel>Designation</InputLabel>
+              <StyledDropdowns
+                label="Designation"
+                value={designation}
+                onChange={(e) => setDesignation(e.target.value)}
+                variant="standard"
+                size='small'
+              >
+                {
+                  designationList.map((designation) => {
+                    return <MenuItem value={designation}>{designation}</MenuItem>
+                  })
+                }
+              </StyledDropdowns>
+            </StyledMuiFormControl>
+
             <StyledTextField
               size='small'
               required
@@ -296,7 +291,49 @@ export const Contact = () => {
           <SubmitContainer>
             <SubmitButton variant="contained" onClick={handleSubmit}>Submit</SubmitButton>
           </SubmitContainer>
-        </ContactCard> */}
+        </ContactCard>
+
+        <BackgroundCard>
+          <BackgroundCardHeader />
+          <BackgroundImageContainer>
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: String(apiKey) }}
+              
+              defaultCenter={ window.innerWidth > 600 ? mapCenter : medPlusLatLong }
+              // zoom={14}
+              defaultZoom={15}
+              options={{
+                disableDefaultUI: true,
+                keyboardShortcuts: false,
+                styles: mapStyles,
+              }}
+              onClick={handleMarkerClick}
+            >
+              <MyMarker
+                lat={medPlusLatLong.lat}
+                lng={medPlusLatLong.lng}
+                text="MedPlus LLC"
+              />
+            </GoogleMapReact>
+          </BackgroundImageContainer>
+          <BackgroundCardFooter >
+            <BackgroundCardFootText variant='body2'>
+              866.995.1842 Toll Free
+            </BackgroundCardFootText>
+            <BackgroundCardFootText variant='body2'>
+              713.995.1842 Local
+            </BackgroundCardFootText>
+            <BackgroundCardFootText variant='body2'>
+              713.995.0692 Fax
+            </BackgroundCardFootText>
+            <BackgroundCardFootText variant='body2'>
+              info@medplusllc.com
+              </BackgroundCardFootText>
+          </BackgroundCardFooter>
+
+        </BackgroundCard>
+
+        
 
       </CardsContainer>
       <Footer />
