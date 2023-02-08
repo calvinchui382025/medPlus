@@ -62,10 +62,7 @@ const DrawerHeader = styled('div')(({theme}) => {
     justifyContent: 'center',
   })
 
-  interface StyledListItemButtonProps {
-    underlined?: boolean,
-  }
-  const StyledListItemButton = styled(ListItemButton)<StyledListItemButtonProps>(({theme}) => {
+  const StyledListItemButton = styled(ListItemButton)(({theme}) => {
     return ({
       display: 'flex',
       justifyContent: 'center',
@@ -75,11 +72,11 @@ const DrawerHeader = styled('div')(({theme}) => {
   })
   
   interface StyledTypographyProps {
-    underlined?: boolean,
+    underlined: string | undefined,
   }
-  const StyledTypography = styled(Typography)<StyledTypographyProps>(({theme, underlined}) => {
+  const StyledTypography = styled(Typography)<StyledTypographyProps>(({ underlined }) => {
     return ({
-      textDecoration: underlined ? 'underline' : 'none',
+      textDecoration: underlined
     })
   })
 //======================================================
@@ -110,6 +107,7 @@ const NavBar: FC<NavBarTypes> = ({ theme, handleToggleTheme }) => {
         {navItems.map((item) => {
           let to = `/${item.toLowerCase()}`;
           if (item === 'Home') to = '/'
+          const selected = selectedPage === to;
           return (
             <StyledListItem key={item} disablePadding>
               <StyledListItemButton 
@@ -119,7 +117,11 @@ const NavBar: FC<NavBarTypes> = ({ theme, handleToggleTheme }) => {
                 onClick={() => setSelectedPage(to)}
                 size='small'
               >
-                <StyledTypography variant='button' underlined={selectedPage === to}>
+                <StyledTypography 
+                  variant='button' 
+                  // underlined={selected}
+                  underlined={selected? 'underline': undefined}
+                >
                   {item}
                 </StyledTypography>
               </StyledListItemButton>
