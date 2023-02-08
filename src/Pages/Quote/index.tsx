@@ -84,6 +84,33 @@ export const Quote = () => {
   const [certified, setCertified] = React.useState('');
   const [checked, setChecked] = React.useState("");
   const [checkedPractice, setCheckedPractice] = React.useState("Individual");
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [phoneNumber, setPhoneNumber] = React.useState('');
+  const [addressLine1, setAddressLine1] = React.useState('');
+  const [addressLine2, setAddressLine2] = React.useState('');
+  const [selectState, setSelectState] = React.useState('');
+  const [zipCode, setZipCode] = React.useState('');
+  const [insuranceProduct, setInsuranceProduct] = React.useState('');
+  const [insuredFirstName, setInsuredFirstName] = React.useState('');
+  const [insuredLastName, setInsuredLastName] = React.useState('');
+  const [designation, setDesignation] = React.useState('');
+  const [practiceState, setPracticeState] = React.useState('');
+  const [practiceCounty, setPracticeCounty] = React.useState('');
+  const [individualGroup, setIndividualGroup] = React.useState('');
+  const [numberInGroup, setNumberInGroup] = React.useState('');
+  const [specialty, setSpecialty] = React.useState('');
+  const [boardCertified, setBoardCertified] = React.useState('');
+  const [claimsMade, setClaimsMade] = React.useState('');
+  const [occurence, setOccurence] = React.useState('');
+  const [newToPractice, setNewToPractice] = React.useState('');
+  const [currentCarrier, setCurrentCarrier] = React.useState('');
+  const [currentPolicyNumber, setCurrentPolicyNumber] = React.useState('');
+  const [policyNumberExpirationDate, setPolicyNumberExpirationDate] = React.useState('');
+  const [claimsInLast10Years, setClaimsInLast10Years] = React.useState('');
+  const [heardFrom, setHeardFrom] = React.useState('');
+  const [heardFromOther, setHeardFromOther] = React.useState('');
 
   const handleInsuredChange = (event: SelectChangeEvent) => {
     setInsured(event.target.value);
@@ -105,6 +132,16 @@ export const Quote = () => {
     setCheckedPractice(event.target.value);
   }
 
+  const formData = {firstName, lastName, email, phoneNumber, addressLine1, addressLine2, state, zipCode, insuranceProduct, insuredFirstName, insuredLastName, designation, practiceState, practiceCounty, individualGroup, numberInGroup, specialty, boardCertified, claimsMade, occurence, newToPractice, currentCarrier, currentPolicyNumber, policyNumberExpirationDate, claimsInLast10Years, heardFrom, heardFromOther}
+  // const handleChange = (event: { target: { name: any; value: any; }; }) => {
+  //   setFormData({ ...formData, [event.target.name]: event.target.value });
+  // };
+
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    console.log(formData);
+  };
+
   return (
     <Root>
       <ContentContainer>
@@ -121,13 +158,12 @@ export const Quote = () => {
           <StyledFormGroup>
             <ContactInformation>
               <SubtitleText variant="h5">Contact Information</SubtitleText>
-              <CustomTextField label="First Name"></CustomTextField>
-              <CustomTextField label="First Name"></CustomTextField>
-              <CustomTextField label="Last Name"></CustomTextField>
-              <CustomTextField label="Email"></CustomTextField>
-              <CustomTextField label="Phone Number"></CustomTextField>
-              <CustomTextField label="Address Line 1"></CustomTextField>
-              <CustomTextField label="Address Line 2"></CustomTextField>
+              <CustomTextField label="First Name" name="firstname" value={firstName} onChange={(e) => setFirstName(e.target.value)}></CustomTextField>
+              <CustomTextField label="Last Name" name="lastname" value={lastName} onChange={(e) => setLastName(e.target.value)}></CustomTextField>
+              <CustomTextField label="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}></CustomTextField>
+              <CustomTextField label="Phone Number" name="phonenumber" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}></CustomTextField>
+              <CustomTextField label="Address Line 1" name="addressline1" value={addressLine1} onChange={(e) => setAddressLine1(e.target.value)}></CustomTextField>
+              <CustomTextField label="Address Line 2" name="addressline2" value={addressLine2} onChange={(e) => setAddressLine2(e.target.value)}></CustomTextField>
               <SelectBox>
                 <InputLabel id="demo-select-small">State</InputLabel>
                   <Select
@@ -148,7 +184,7 @@ export const Quote = () => {
                       }
                     </Select>
               </SelectBox>
-              <CustomTextField label="Zip Code"></CustomTextField>
+              <CustomTextField label="Zip Code" name="zipcode" value={zipCode} onChange={(e) => setZipCode(e.target.value)}></CustomTextField>
             </ContactInformation>
             <Divider />
             <PotentialInsuranceChoice>
@@ -315,7 +351,7 @@ export const Quote = () => {
                 <CustomTextField label="If other, please specify"></CustomTextField>
             </CurrentCoverageInformation>
             <div style={{display: 'flex', flexDirection: "row", justifyContent: "center", marginBottom: 10}}>
-              <Button variant="contained" color="primary" sx={{width: 200}}>Submit for quote</Button>
+              <Button variant="contained" color="primary" type="submit" onClick={handleSubmit} sx={{width: 200}}>Submit for quote</Button>
             </div>
           </StyledFormGroup>
         </QuoteCard>
