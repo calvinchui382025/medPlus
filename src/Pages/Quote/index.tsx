@@ -523,7 +523,7 @@ export const Quote = () => {
                     />
                 </StyledMuiFormControl>
                 <CustomTextField variant="standard" label="If other, please specify" disabled={checkedHear === "Agent" || checkedHear === "Mailer" || checkedHear === "Email" || checkedHear === "Referral" || checkedHear === "Web Search"} value={heardFromOther} onChange={(e) => setHeardFrom(e.target.value)}></CustomTextField>
-              <div style={{display: 'flex', flexDirection: "row", justifyContent: "center"}}>
+              <div style={{display: 'flex', flexDirection: "row", justifyContent: "center", marginTop: 10}}>
                 <Button variant="contained" color="primary" type="submit" onClick={handleSubmit} sx={{width: 200}}>Submit for quote</Button>
               </div>
             </CurrentCoverageInformation>
