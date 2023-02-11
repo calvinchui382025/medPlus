@@ -135,8 +135,7 @@ export const About = () => {
         <TeamMemberAreaCard>
           <TeamMemberAreaCardTwo>
             <TeamTitle>
-              <Typography variant="h4" sx={{color: "rgb(35, 116, 176)"}}>Meet our Team!</Typography>
-              <Divider sx={{paddingTop: 2, marginBottom: 2}}></Divider>
+              <Typography variant="h4" sx={{color: "rgb(35, 116, 176)", marginTop: 2}}>Meet our Team!</Typography>
               {/* <Typography sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}} variant="h5" gutterBottom>...</Typography> */}
             </TeamTitle>
             <PictureArea>
@@ -199,7 +198,7 @@ export const About = () => {
             </PictureArea>
           </TeamMemberAreaCardTwo>
         </TeamMemberAreaCard>
-        <div>
+        {/* <div>
             <h1>Our past</h1>
             <div>
             While working as a surplus lines broker for U.S. Risk, Dennis Borne saw that medical professionals were underserved in their insurance needs. There was a lack of business ethics throughout the agency industry, and he saw much room for improvement. In 1997, Dennis decided to fill that gap, and he started MedPLUS LLC. He wanted to be the insurance agent that medical professionals could trust to always serve their best interests. MedPLUS has grown each year since then, becoming a larger presence in the medical professional insurance industry. Our agency has many loyal clients who have been with us since the beginning, and we continue to build strong relationships with our customers on a daily basis.
@@ -212,7 +211,7 @@ export const About = () => {
             <div>
             Moving into the future, MedPLUS will continue to grow into a solid presence in the medical profession, in Texas and throughout the United States. Our focus, as it always has been, will be on maintaining our ethical responsibility to you, our valued clientele, and your satisfaction will always be our first priority. Ultimately, we aspire to have lasting relationships with our customers that span their medical career and beyond.
             </div>
-        </div>
+        </div> */}
       </ContentContainer>
       <Footer />
     </AboutRoot>

@@ -157,7 +157,7 @@ const StyledButtonDiv = styled('div')({
   display: 'flex',
   flexDirection: "row",
   justifyContent: "center",
-  marginTop: 50,
+  marginTop: 10,
 })
 
 const SubtitleText = styled(Typography)({
@@ -224,6 +224,7 @@ export const Quote = () => {
   const [currentCarrier, setCurrentCarrier] = React.useState('');
   const [currentPolicyNumber, setCurrentPolicyNumber] = React.useState('');
   const [policyNumberExpirationDate, setPolicyNumberExpirationDate] = React.useState('');
+  const [policyNumberRetroactiveDate, setPolicyNumberRetroactiveDate] = React.useState('');
   const [claimsInLast10Years, setClaimsInLast10Years] = React.useState('');
   const [heardFromOther, setHeardFromOther] = React.useState('');
   const [otherSpecify, setOtherSpecify] = React.useState('');
@@ -271,6 +272,7 @@ export const Quote = () => {
     "Current Carrier": currentCarrier,
     "Current Policy Number": currentPolicyNumber,
     "Policy Number Expiration Date": policyNumberExpirationDate,
+    "Policy Number Retroactive Date": policyNumberRetroactiveDate,
     "Claims in Last 10 Years": claimsInLast10Years,
     "Heard From": checkedHear,
     "Heard From Other": heardFromOther,
@@ -504,6 +506,7 @@ export const Quote = () => {
               <CustomTextField variant="standard" label="Current Carrier" value={currentCarrier} onChange={(e) => setCurrentCarrier(e.target.value)}></CustomTextField>
               <CustomTextField variant="standard" label="Current Policy Number" value={currentPolicyNumber} onChange={(e) => setCurrentPolicyNumber(e.target.value)}></CustomTextField>
               <CustomTextField variant="standard" label="Current Policy Expiration Date" value={policyNumberExpirationDate} onChange={(e) => setPolicyNumberExpirationDate(e.target.value)}></CustomTextField>
+              <CustomTextField variant="standard" label="Current Policy Retroactive Date" value={policyNumberRetroactiveDate} onChange={(e) => setPolicyNumberRetroactiveDate(e.target.value)}></CustomTextField>
               <CustomTextField variant="standard" label="How many claims in the last 10 years" value={claimsInLast10Years} onChange={(e) => setClaimsInLast10Years(e.target.value)}></CustomTextField>
                 <StyledHeardFromForm>
                   <StyledInputLabel id="demo-select-small">How did you hear about us?</StyledInputLabel>
