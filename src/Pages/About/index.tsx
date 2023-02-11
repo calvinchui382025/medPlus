@@ -1,149 +1,204 @@
 import { ContentContainer } from '../../styled-components'
 import { Root } from '../../styled-components';
-import { styled, Card, CardMedia, Typography, Box, IconButton } from '@mui/material'
+import Footer from '../../components/Footer';
+import { styled, Card, Divider, CardMedia, Typography, Box, IconButton } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email';
 import { RowContainer } from '../../styled-components';
+import { animateProps, contactFadeIn, contactFadeOut, fadeIn, fadeOut, moveDownAnimation, moveLeftAnimation, moveRightAnimation, niceBoxShadow } from '../../utils/constants'
 
-// const Meetteamarea = styled('div')({
-//   display: 'flex',
-//   flexDirection: 'row',
-//   justifyContent: 'center',
-
-// })
+const AboutRoot = styled(Root)({
+  backgroundColor: 'gainsboro',
+})
 
 const Teammemberpicturecard = styled(Card)({
   minHeight: 500,
   minWidth: 500,
   maxWidth: 345,
-  margin: "0px 15px 0px 15px",
+  margin: "0px 15px 10px 15px",
   position: 'relative',
-  borderRadius: "5px",
+  boxShadow: niceBoxShadow,
 })
 
-const Teammemberarea = styled('div')({
+// const Teammemberarea = styled('div')<animateProps>(({animate}) =>({
+//   display: 'flex',
+//   flexDirection: 'row',
+//   justifyContent: 'center',
+//   border: "none",
+//   boxShadow: "none",
+//   backgroundColor: "transparent",
+//   animation: `${moveDownAnimation} 2s`,
+
+//   '@media (max-width: 1600px)': {
+//     flexDirection: 'column',
+//     justifyContent: 'center',
+//   },
+// })
+// )
+
+const TeamTitle = styled('div')({
+  marginTop: 10,
+  marginBottom: 10,
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
+  justifyContent: 'top',
+})
+
+const TeamMemberAreaCard = styled(Card)<animateProps>(({animate}) =>({
+  marginTop: 20,
+  paddingTop: 15,
+  paddingBottom: 15,
+  width: "1250px",
+  height: "550px",
+  display: 'flex',
   justifyContent: 'center',
+  borderRadius: "70px",
+  boxShadow: niceBoxShadow,
+  backgroundColor: "white",
+  animation: `${moveDownAnimation} 2s`,
+
+  '@media (max-width: 1300px)': {
+    width: "90%",
+    height: "700px",
+  },
+})
+)
+
+const TeamMemberAreaCardTwo = styled(Card)<animateProps>(({animate}) =>({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'top',
+  alignItems: 'center',
+  width: "1220px",
+  borderRadius: "65px",
   border: "none",
   boxShadow: "none",
-  backgroundColor: "transparent",
+  backgroundColor: "rgb(227,234,240)",
 
-  '@media (max-width: 768px)': {
+  '@media (max-width: 1300px)': {
+    width: "88%",
+    height: "700px",
+  },
+})
+)
+
+const PictureArea = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  marginTop: 10,
+  marginBottom: 10,
+  '@media (max-width: 1300px)': {
     flexDirection: 'column',
-    justifyContent: 'center',
   },
 })
 
+const MemberAreaDiv = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+})
+
+const StyledImgElement = styled('img')({
+  width: "18em",
+  height: "18em",
+  borderRadius: "50%",
+  boxShadow: niceBoxShadow,
+  '@media (max-width: 1300px)': {
+    width: "12em",
+    height: "12em",
+  },
+})
+
+const MemberDescriptionArea = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+})
+
+const MemberName = styled(Typography)({
+  margin: 8,
+  fontWeight: "700",
+  fontSize: 20,
+})
+
+const MemberEmail = styled(Typography)({
+  margin: 8,
+  fontWeight: "400",
+  fontSize: 16,
+})
 
 export const About = () => {
   return (
-    <Root>
+    <AboutRoot>
       <ContentContainer>
-        <Typography
-        variant="h4"
-        gutterBottom
-        sx={{marginTop: '10px'}}
-        >
-        Meet our Team
-        </Typography>
-        <Teammemberarea>
-          <Teammemberpicturecard>
-              <CardMedia
-                component="img"
-                height="500"
-                image={require("../../images/photo-dennis_borne-lg.jpg")}
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  width: '100%',
-                  bgcolor: 'rgba(0, 0, 0, 0.54)',
-                  color: 'white',
-                  padding: '10px',
-                }}
-              >
-                <Typography variant="h3">Dennis Borne</Typography>
-                <Typography variant="h5">President</Typography>
-                <RowContainer>
+        <TeamMemberAreaCard>
+          <TeamMemberAreaCardTwo>
+            <TeamTitle>
+              <Typography variant="h4" sx={{color: "rgb(35, 116, 176)"}}>Meet our Team!</Typography>
+              <Divider sx={{paddingTop: 2, marginBottom: 2}}></Divider>
+              {/* <Typography sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}} variant="h5" gutterBottom>...</Typography> */}
+            </TeamTitle>
+            <PictureArea>
+              <MemberAreaDiv>
+                <StyledImgElement
+                src={require("../../images/photo-dennis_borne-lg.jpg")}
+                style={{marginRight: "10px"}}
+                >  
+                </StyledImgElement>
+                <MemberDescriptionArea>
+                  <MemberName>Dennis Borne</MemberName>
                   <IconButton
-                  sx={{color: "white"}}
+                  sx={{color: "rgb(35, 116, 176)"}}
                   aria-label="email"
                   component="label"
                   onClick={() => window.open('mailto:dennis@medplusllc.com')}
                   >
-                    <Typography variant="body2">Email: dennis@medplusllc.com</Typography>
                     <EmailIcon fontSize="small"/>
                   </IconButton>
-                </RowContainer>
-              </Box>
-            </Teammemberpicturecard>
-            <Teammemberpicturecard>
-              <CardMedia
-                component="img"
-                height="500"
-                image={require("../../images/photo-peter_doyle-lg.jpg")}
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  width: '100%',
-                  bgcolor: 'rgba(0, 0, 0, 0.54)',
-                  color: 'white',
-                  padding: '10px',
-                }}
-              >
-                <Typography variant="h3">Peter Doyle</Typography>
-                <Typography variant="h5">Agent</Typography>
-                <RowContainer>
-                <IconButton
-                  sx={{color: "white"}}
+                  <MemberEmail>dennis@medplusllc.com</MemberEmail>
+                </MemberDescriptionArea>
+              </MemberAreaDiv>
+              <MemberAreaDiv>
+                <StyledImgElement
+                src={require("../../images/photo-peter_doyle-lg.jpg")}
+                >  
+                </StyledImgElement>
+                <MemberDescriptionArea>
+                  <MemberName>Peter Doyle</MemberName>
+                  <IconButton
+                  sx={{color: "rgb(35, 116, 176)"}}
                   aria-label="email"
                   component="label"
                   onClick={() => window.open('mailto:pete@medplusllc.com')}
                   >
-                    <Typography variant="body2">Email: pete@medplusllc.com</Typography>
                     <EmailIcon fontSize="small"/>
                   </IconButton>
-                </RowContainer>
-              </Box>
-            </Teammemberpicturecard>
-            <Teammemberpicturecard>
-              <CardMedia
-                component="img"
-                height="500"
-                image={require("../../images/photo-karen_jiminez-lg.jpg")}
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  width: '100%',
-                  bgcolor: 'rgba(0, 0, 0, 0.54)',
-                  color: 'white',
-                  padding: '10px',
-                }}
-              >
-                <Typography variant="h3">Karen Jiminez</Typography>
-                <Typography variant="h5">ISR</Typography>
-                <RowContainer>
+                  <MemberEmail>pete@medplusllc.com</MemberEmail>
+                </MemberDescriptionArea>
+              </MemberAreaDiv>
+              <MemberAreaDiv>
+                <StyledImgElement
+                src={require("../../images/photo-karen_jiminez-lg.jpg")}
+                style={{marginLeft: "10px"}}
+                >  
+                </StyledImgElement>
+                <MemberDescriptionArea>
+                  <MemberName>Karen Jiminez</MemberName>
                   <IconButton
-                  sx={{color: "white"}}
+                  sx={{color: "rgb(35, 116, 176)"}}
                   aria-label="email"
                   component="label"
                   onClick={() => window.open('mailto:karenw@medplusllc.com')}
                   >
-                    <Typography variant="body2">Email: karenw@medplusllc.com</Typography>
                     <EmailIcon fontSize="small"/>
                   </IconButton>
-                </RowContainer>
-              </Box>
-            </Teammemberpicturecard>
-        </Teammemberarea>
+                  <MemberEmail>karenw@medplusllc.com</MemberEmail>
+                </MemberDescriptionArea>
+              </MemberAreaDiv>
+            </PictureArea>
+          </TeamMemberAreaCardTwo>
+        </TeamMemberAreaCard>
         <div>
             <h1>Our past</h1>
             <div>
@@ -159,6 +214,7 @@ export const About = () => {
             </div>
         </div>
       </ContentContainer>
-    </Root>
+      <Footer />
+    </AboutRoot>
   )
 }

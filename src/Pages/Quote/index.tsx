@@ -384,7 +384,7 @@ export const Quote = () => {
                     label="Other"
                   />
                 </StyledMuiFormControl>
-                <CustomTextField variant="standard" label="Please specify if other" disabled={checked === "Professional Liability" || checked === "Commercial" || checked === "Personal"} name="otherSpecify" value={otherSpecify} onChange={(e) => setOtherSpecify(e.target.value)}></CustomTextField>
+                <CustomTextField variant="standard" label="Please specify if other" disabled={checked === "Professional Liability" || checked === "Commercial" || checked === "Personal" || checked === null} name="otherSpecify" value={otherSpecify} onChange={(e) => setOtherSpecify(e.target.value)}></CustomTextField>
               </PotentialInsuranceChoice>
               <PracticeInformation>
                 <SubtitleText variant="h6">Practice Information</SubtitleText>
@@ -429,7 +429,7 @@ export const Quote = () => {
                     label="Group"
                   />
                 </SelectBoxPractice>
-                <CustomTextField variant="standard" label="How many in group?" disabled={checkedPractice === "Individual"}  value={numberInGroup} onChange={(e) => setNumberInGroup(e.target.value)}></CustomTextField>
+                <CustomTextField variant="standard" label="How many in group?" disabled={checkedPractice === "Individual" || checkedPractice === null}  value={numberInGroup} onChange={(e) => setNumberInGroup(e.target.value)}></CustomTextField>
                 <CustomTextField variant="standard" label="Specialty" value={specialty} onChange={(e) => setSpecialty(e.target.value)}></CustomTextField>
                 <StyledMuiFormControl>
                 <InputLabel>Board Certified</InputLabel>
@@ -483,7 +483,7 @@ export const Quote = () => {
                   />
               </StyledMuiFormControl>
               <StyledMuiFormControl
-              disabled={checkedCoverageInfo === "Occurence" || checkedCoverageInfo === "New To Practice"}
+              disabled={checkedCoverageInfo === "Occurence" || checkedCoverageInfo === "New To Practice" || checkedCoverageInfo === null}
               >
                 <InputLabel>Limits</InputLabel>
                   <StyledDropdowns
@@ -568,7 +568,7 @@ export const Quote = () => {
                       label="Other"
                     />
                 </StyledHeardFromForm>
-                <CustomTextField variant="standard" label="If other, please specify" disabled={checkedHear === "Agent" || checkedHear === "Mailer" || checkedHear === "Email" || checkedHear === "Referral" || checkedHear === "Web Search"} value={heardFromOther} onChange={(e) => setHeardFromOther(e.target.value)}></CustomTextField>
+                <CustomTextField variant="standard" label="If other, please specify" disabled={checkedHear === "Agent" || checkedHear === "Mailer" || checkedHear === "Email" || checkedHear === "Referral" || checkedHear === "Web Search" || checkedHear === null} value={heardFromOther} onChange={(e) => setHeardFromOther(e.target.value)}></CustomTextField>
               <StyledButtonDiv>
                 <Button variant="contained" color="primary" type="submit" onClick={handleSubmit} sx={{width: 200}}>Submit for quote</Button>
               </StyledButtonDiv>
