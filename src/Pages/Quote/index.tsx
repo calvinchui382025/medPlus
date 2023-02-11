@@ -7,7 +7,8 @@ import React from 'react';
 import Footer from '../../components/Footer';
 import { animateProps, contactFadeIn, contactFadeOut, fadeIn, fadeOut, moveDownAnimation, moveLeftAnimation, moveRightAnimation, niceBoxShadow } from '../../utils/constants'
 
-//TODO: Fix top padding/margin and make working with mobile
+//TODO: make working with mobile
+//TODO: add error case so submit can only be pressed when all fields are filled out
 
 const ContactRoot = styled(Root)({
   justifyContent: 'space-between',
@@ -63,23 +64,42 @@ const StyledDropdowns = styled(Select)({
   height: '48px',
   fontSize: '12px',
   fontWeight: '700',
-})
-
-const SelectBox = styled('div')({
-  marginLeft: "5px",
-  marginBottom: "5px",
-  fontSize: '12px',
-  fontWeight: '700',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
+  width: '90%',
 })
 
 const SelectBoxPractice = styled('div')({
-  marginLeft: "5px",
-  marginBottom: "5px",
+  paddingTop: "5px",
+  '& .MuiFormControlLabel-label': {
+    fontSize: '12px',
+    fontWeight: '700',
+    left: '-14px',
+    top: '20px',
+    color: 'rgb(128, 128, 128)',
+  }
+})
+
+const StyledHeardFromForm = styled('div')({
+  marginTop: '15px',
   fontSize: '12px',
   fontWeight: '700',
+  '& .MuiFormControlLabel-label': {
+    fontSize: '12px',
+    fontWeight: '700',
+    left: '-14px',
+    top: '20px',
+    color: 'rgb(128, 128, 128)',
+  }
+})
+
+const StyledInputLabel = styled(InputLabel)({
+  fontSize: '12px',
+  fontWeight: '700',
+})
+
+const StyledFormControlLabel = styled(FormControlLabel)({
+  fontSize: '12px',
+  fontWeight: '700',
+  paddingLeft: '10px',
 })
 
 const StyledMuiFormControl = styled(FormControl)({
@@ -118,7 +138,8 @@ const QuoteCard = styled(Card)<animateProps>(({animate}) => ({
   transition: 'all 1s ease-in-out',
 
   '@media (max-width: 600px)': {
-    position: 'inherit'
+    position: 'inherit',
+    height: animate ? '500px' : '1500px',
   },
 })
 )
@@ -132,6 +153,13 @@ const StyledFormGroup = styled(FormGroup)({
   },
 })
 
+const StyledButtonDiv = styled('div')({
+  display: 'flex',
+  flexDirection: "row",
+  justifyContent: "center",
+  marginTop: 10,
+})
+
 const SubtitleText = styled(Typography)({
   color: "rgb(35, 116, 176)"
 })
@@ -139,7 +167,6 @@ const SubtitleText = styled(Typography)({
 const GroupedCard = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
 }) 
 
 const ContactInformation = styled(CardContent)({
@@ -176,7 +203,6 @@ const CurrentCoverageInformation = styled(CardContent)({
 export const Quote = () => {
   const stateList = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
   const designationList = ['C.C.P.','CRNA','D.C.','D.D.S','D.M.D','D.O.','D.P.M.','M.D.','Medical Director','MSN','NP','NPT','O.D.','P.A.','PhD','RN']
-  const [insured, setInsured] = React.useState<any>('');
   const [state, setState] = React.useState<any>('');
   const [certified, setCertified] = React.useState<any>('');
   const [checked, setChecked] = React.useState("");
@@ -188,56 +214,30 @@ export const Quote = () => {
   const [addressLine1, setAddressLine1] = React.useState('');
   const [addressLine2, setAddressLine2] = React.useState('');
   const [zipCode, setZipCode] = React.useState('');
-  const [insuranceProduct, setInsuranceProduct] = React.useState('');
   const [insuredFirstName, setInsuredFirstName] = React.useState('');
   const [insuredLastName, setInsuredLastName] = React.useState('');
-  const [designation, setDesignation] = React.useState('');
-  const [practiceState, setPracticeState] = React.useState('');
+  const [designation, setDesignation] = React.useState<any>('');
+  const [practiceState, setPracticeState] = React.useState<any>('');
   const [practiceCounty, setPracticeCounty] = React.useState('');
-  const [individualGroup, setIndividualGroup] = React.useState('');
   const [numberInGroup, setNumberInGroup] = React.useState('');
   const [specialty, setSpecialty] = React.useState('');
-  const [boardCertified, setBoardCertified] = React.useState('');
-  const [claimsMade, setClaimsMade] = React.useState('');
-  const [occurence, setOccurence] = React.useState('');
-  const [newToPractice, setNewToPractice] = React.useState('');
   const [currentCarrier, setCurrentCarrier] = React.useState('');
   const [currentPolicyNumber, setCurrentPolicyNumber] = React.useState('');
   const [policyNumberExpirationDate, setPolicyNumberExpirationDate] = React.useState('');
+  const [policyNumberRetroactiveDate, setPolicyNumberRetroactiveDate] = React.useState('');
   const [claimsInLast10Years, setClaimsInLast10Years] = React.useState('');
-  const [heardFrom, setHeardFrom] = React.useState('');
   const [heardFromOther, setHeardFromOther] = React.useState('');
   const [otherSpecify, setOtherSpecify] = React.useState('');
-  const [checkedClaimsMade, setCheckedClaimsMade] = React.useState('');
-  const [checkedOccurence, setCheckedOccurence] = React.useState('');
-  const [checkedNewToPractice, setCheckedNewToPractice] = React.useState('');
+  const [checkedCoverageInfo, setCheckedCoverageInfo] = React.useState('');
   const [checkedHear, setCheckedHear] = React.useState('');
+  const [limits, setLimits] = React.useState<any>('');
 
   const handleCheckedHear = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCheckedHear(event.target.value);
   }
 
-  const handleCheckedOccurence = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckedOccurence(event.target.value);
-  }
-
-  const handleCheckedNewToPractice = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckedNewToPractice(event.target.value);
-  }
-
-  const handleCheckedClaimsMade = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckedClaimsMade(event.target.value);
-  }
-  const handleInsuredChange = (event: SelectChangeEvent) => {
-    setInsured(event.target.value);
-  };
-
-  const handleStateChange = (event: SelectChangeEvent) => {
-    setState(event.target.value);
-  };
-
-  const handleCertifiedChange = (event: SelectChangeEvent) => {
-    setCertified(event.target.value);
+  const handleCheckedCoverageInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckedCoverageInfo(event.target.value);
   }
 
   const handleCheckedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -248,7 +248,36 @@ export const Quote = () => {
     setCheckedPractice(event.target.value);
   }
 
-  const formData = {firstName, lastName, email, phoneNumber, addressLine1, addressLine2, state, zipCode, insuranceProduct, insuredFirstName, insuredLastName, designation, practiceState, practiceCounty, individualGroup, numberInGroup, specialty, boardCertified, claimsMade, occurence, newToPractice, currentCarrier, currentPolicyNumber, policyNumberExpirationDate, claimsInLast10Years, heardFrom, heardFromOther}
+  const formData = {
+    "First Name": firstName,
+    "Last Name": lastName,
+    "Email": email,
+    "Phone Number": phoneNumber,
+    "Address Line 1": addressLine1,
+    "Address Line 2": addressLine2,
+    "State": state,
+    "Zip Code": zipCode,
+    "Insurance Product": checked,
+    "Insurance if other": otherSpecify,
+    "Insured First Name": insuredFirstName,
+    "Insured Last Name": insuredLastName,
+    "Designation": designation,
+    "Practice State": practiceState,
+    "Practice County": practiceCounty,
+    "Individual or Group": checkedPractice,
+    "Number in Group": numberInGroup,
+    "Specialty": specialty,
+    "Board Certified": certified,
+    "Coverage Information": checkedCoverageInfo,
+    "Current Carrier": currentCarrier,
+    "Current Policy Number": currentPolicyNumber,
+    "Policy Number Expiration Date": policyNumberExpirationDate,
+    "Policy Number Retroactive Date": policyNumberRetroactiveDate,
+    "Claims in Last 10 Years": claimsInLast10Years,
+    "Heard From": checkedHear,
+    "Heard From Other": heardFromOther,
+    "Limits": limits,
+    }
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
@@ -296,11 +325,11 @@ export const Quote = () => {
                 <StyledMuiFormControl>
                   <InputLabel>Professional Designation</InputLabel>
                     <StyledDropdowns
-                        value={insured}
-                        label="Insured"
+                        value={designation}
+                        label="Designation"
                         variant="standard"
                         size="small"
-                        onChange={(e) => setInsured(e.target.value)}
+                        onChange={(e) => setDesignation(e.target.value)}
                         sx={{padding: "5px", width: "250px",}}
                       >
                         {
@@ -316,7 +345,7 @@ export const Quote = () => {
               <PotentialInsuranceChoice>
                 <SubtitleText variant="h6">What Insurance Products Are You Interested In?</SubtitleText>
                 <StyledMuiFormControl>
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     control={
                       <Checkbox
                         checked={checked === "Professional Liability"}
@@ -326,7 +355,7 @@ export const Quote = () => {
                     }
                     label="Professional Liability"
                   />
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     control={
                       <Checkbox
                         checked={checked === "Commercial"}
@@ -336,7 +365,7 @@ export const Quote = () => {
                     }
                     label="Commercial"
                   />
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     control={
                       <Checkbox
                         checked={checked === "Personal"}
@@ -346,7 +375,7 @@ export const Quote = () => {
                     }
                     label="Personal"
                   />
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     control={
                       <Checkbox
                         checked={checked === "Other"}
@@ -357,7 +386,7 @@ export const Quote = () => {
                     label="Other"
                   />
                 </StyledMuiFormControl>
-                <CustomTextField variant="standard" label="Please specify if other" disabled={checked === "Professional Liability" || checked === "Commercial" || checked === "Personal"} name="otherSpecify" value={otherSpecify} onChange={(e) => setOtherSpecify(e.target.value)}></CustomTextField>
+                <CustomTextField variant="standard" label="Please specify if other" disabled={checked === "Professional Liability" || checked === "Commercial" || checked === "Personal" || checked === null} name="otherSpecify" value={otherSpecify} onChange={(e) => setOtherSpecify(e.target.value)}></CustomTextField>
               </PotentialInsuranceChoice>
               <PracticeInformation>
                 <SubtitleText variant="h6">Practice Information</SubtitleText>
@@ -365,11 +394,11 @@ export const Quote = () => {
                   <InputLabel>Practice State</InputLabel>
                     <StyledDropdowns
                         id="demo-select-small"
-                        value={state}
+                        value={practiceState}
                         label="State"
                         variant="standard"
                         size="small"
-                        onChange={(e) => setState(e.target.value)}
+                        onChange={(e) => setPracticeState(e.target.value)}
                         sx={{padding: "5px", width: "250px",}}
                       >
                         {
@@ -381,7 +410,7 @@ export const Quote = () => {
                 </StyledMuiFormControl>
                 <CustomTextField variant="standard" label="Practice County" value={practiceCounty} onChange={(e) => setPracticeCounty(e.target.value)}></CustomTextField>
                 <SelectBoxPractice>
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     control={
                       <Checkbox
                         checked={checkedPractice === "Individual"}
@@ -391,7 +420,7 @@ export const Quote = () => {
                     }
                     label="Individual"
                   />
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     control={
                       <Checkbox
                         checked={checkedPractice === "Group"}
@@ -402,7 +431,7 @@ export const Quote = () => {
                     label="Group"
                   />
                 </SelectBoxPractice>
-                <CustomTextField variant="standard" label="How many in group?" disabled={checkedPractice === "Individual"}  value={numberInGroup} onChange={(e) => setNumberInGroup(e.target.value)}></CustomTextField>
+                <CustomTextField variant="standard" label="How many in group?" disabled={checkedPractice === "Individual" || checkedPractice === null}  value={numberInGroup} onChange={(e) => setNumberInGroup(e.target.value)}></CustomTextField>
                 <CustomTextField variant="standard" label="Specialty" value={specialty} onChange={(e) => setSpecialty(e.target.value)}></CustomTextField>
                 <StyledMuiFormControl>
                 <InputLabel>Board Certified</InputLabel>
@@ -424,44 +453,64 @@ export const Quote = () => {
             <CurrentCoverageInformation>
               <SubtitleText variant="h6">Current Coverage Information</SubtitleText>
               <StyledMuiFormControl>
-                <FormControlLabel
+                <StyledFormControlLabel
                     control={
                       <Checkbox
-                        checked={checkedClaimsMade === "Claims Made"}
-                        onChange={handleCheckedClaimsMade}
+                        checked={checkedCoverageInfo === "Claims Made"}
+                        onChange={handleCheckedCoverageInfo}
                         value="Claims Made"
                       />
                     }
                     label="Claims Made"
                   />
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     control={
                       <Checkbox
-                        checked={checkedOccurence === "Occurence"}
-                        onChange={handleCheckedOccurence}
+                        checked={checkedCoverageInfo === "Occurence"}
+                        onChange={handleCheckedCoverageInfo}
                         value="Occurence"
                       />
                     }
                     label="Occurence"
                   />
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     control={
                       <Checkbox
-                        checked={checkedNewToPractice === "New To Practice"}
-                        onChange={handleCheckedNewToPractice}
+                        checked={checkedCoverageInfo === "New To Practice"}
+                        onChange={handleCheckedCoverageInfo}
                         value="New To Practice"
                       />
                     }
                     label="New To Practice"
                   />
               </StyledMuiFormControl>
+              <StyledMuiFormControl
+              disabled={checkedCoverageInfo === "Occurence" || checkedCoverageInfo === "New To Practice" || checkedCoverageInfo === null}
+              >
+                <InputLabel>Limits</InputLabel>
+                  <StyledDropdowns
+                      value={limits}
+                      label="Limits"
+                      variant="standard"
+                      size="small"
+                      onChange={(e) => setLimits(e.target.value)}
+                      sx={{padding: "5px", width: "250px",}}
+                    >
+                    <MenuItem value="200/600">200/600</MenuItem>
+                    <MenuItem value="250/750">250/750</MenuItem>
+                    <MenuItem value="500/1 Mil">500/1 Mil</MenuItem>
+                    <MenuItem value="1 Mil/3 Mil">1 Mil/3 Mil</MenuItem>
+                    <MenuItem value="Other">Other</MenuItem>
+                  </StyledDropdowns>
+              </StyledMuiFormControl>
               <CustomTextField variant="standard" label="Current Carrier" value={currentCarrier} onChange={(e) => setCurrentCarrier(e.target.value)}></CustomTextField>
               <CustomTextField variant="standard" label="Current Policy Number" value={currentPolicyNumber} onChange={(e) => setCurrentPolicyNumber(e.target.value)}></CustomTextField>
               <CustomTextField variant="standard" label="Current Policy Expiration Date" value={policyNumberExpirationDate} onChange={(e) => setPolicyNumberExpirationDate(e.target.value)}></CustomTextField>
+              <CustomTextField variant="standard" label="Current Policy Retroactive Date" value={policyNumberRetroactiveDate} onChange={(e) => setPolicyNumberRetroactiveDate(e.target.value)}></CustomTextField>
               <CustomTextField variant="standard" label="How many claims in the last 10 years" value={claimsInLast10Years} onChange={(e) => setClaimsInLast10Years(e.target.value)}></CustomTextField>
-                <StyledMuiFormControl>
-                  {/* <InputLabel id="demo-select-small">How did you hear about us?</InputLabel> */}
-                    <FormControlLabel
+                <StyledHeardFromForm>
+                  <StyledInputLabel id="demo-select-small">How did you hear about us?</StyledInputLabel>
+                    <StyledFormControlLabel
                       control={
                         <Checkbox
                           checked={checkedHear === "Agent"}
@@ -471,7 +520,7 @@ export const Quote = () => {
                       }
                       label="Agent"
                     />
-                    <FormControlLabel
+                    <StyledFormControlLabel
                       control={
                         <Checkbox
                           checked={checkedHear === "Mailer"}
@@ -481,7 +530,7 @@ export const Quote = () => {
                       }
                       label="Mailer"
                     />
-                    <FormControlLabel
+                    <StyledFormControlLabel
                       control={
                         <Checkbox
                           checked={checkedHear === "Email"}
@@ -491,7 +540,7 @@ export const Quote = () => {
                       }
                       label="Email"
                     />
-                    <FormControlLabel
+                    <StyledFormControlLabel
                       control={
                         <Checkbox
                           checked={checkedHear === "Referral"}
@@ -501,7 +550,7 @@ export const Quote = () => {
                       }
                       label="Referral"
                     />
-                    <FormControlLabel
+                    <StyledFormControlLabel
                       control={
                         <Checkbox
                           checked={checkedHear === "Web Search"}
@@ -511,7 +560,7 @@ export const Quote = () => {
                       }
                       label="Web Search"
                     />
-                    <FormControlLabel
+                    <StyledFormControlLabel
                       control={
                         <Checkbox
                           checked={checkedHear === "Other"}
@@ -521,11 +570,11 @@ export const Quote = () => {
                       }
                       label="Other"
                     />
-                </StyledMuiFormControl>
-                <CustomTextField variant="standard" label="If other, please specify" disabled={checkedHear === "Agent" || checkedHear === "Mailer" || checkedHear === "Email" || checkedHear === "Referral" || checkedHear === "Web Search"} value={heardFromOther} onChange={(e) => setHeardFrom(e.target.value)}></CustomTextField>
-              <div style={{display: 'flex', flexDirection: "row", justifyContent: "center", marginTop: 10}}>
+                </StyledHeardFromForm>
+                <CustomTextField variant="standard" label="If other, please specify" disabled={checkedHear === "Agent" || checkedHear === "Mailer" || checkedHear === "Email" || checkedHear === "Referral" || checkedHear === "Web Search" || checkedHear === null} value={heardFromOther} onChange={(e) => setHeardFromOther(e.target.value)}></CustomTextField>
+              <StyledButtonDiv>
                 <Button variant="contained" color="primary" type="submit" onClick={handleSubmit} sx={{width: 200}}>Submit for quote</Button>
-              </div>
+              </StyledButtonDiv>
             </CurrentCoverageInformation>
           </StyledFormGroup>
         </QuoteCard>
