@@ -9,21 +9,23 @@ export const ContactRoot = styled(Root)({
   backgroundColor: 'gainsboro',
 });
 export const CardsContainer = styled('div')(({theme}) => ({
-    width: '100%',
-    height: '100%',
+    width: '80%',
+    height: '80%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    padding: '200px 48px',
+    alignItems: 'center',
+    // padding: '200px 48px',
     margin: '0px',
 
     '@media (max-width: 600px)': {
       flexDirection: 'column',
-      padding: '12px'
-
+      padding: '12px',
+      height: '100%',
+      width: '100%'
     },
     // @ts-ignore
-    backgroundColor: theme?.palette.background.paper,
+    // backgroundColor: theme?.palette.background.paper,
   })
 )
 export const BackgroundCard = styled(Card)<animateProps>(({animate}) => ({
@@ -35,6 +37,12 @@ export const BackgroundCard = styled(Card)<animateProps>(({animate}) => ({
     backgroundColor: '#1d1c1d',
     width: '100%',
     animation: `${moveRightAnimation} 2s`,
+    height: '70%',
+    // minHeight: '600px',
+
+    '@media (max-width: 600px)': {
+      maxWidth: '400px',
+    },
   })
 )
 export const BackgroundCardHeader = styled('div')({
@@ -49,7 +57,6 @@ export const BackgroundImageContainer = styled('div')({
 })
 export const BackgroundCardFooter = styled('div')({
   width: '100%',
-  // height: '100%',
   minHeight: '100px',
   display: 'flex',
   flexDirection: 'column',
@@ -64,6 +71,7 @@ export const BackgroundCardFootText = styled(Typography)({
 export const ContactCard = styled(Card)<animateProps>(({animate}) => ({
     width: '100%',
     maxWidth: '400px',
+    // minHeight: '450px',
     
     display: 'flex',
     flexDirection: 'column',
@@ -82,7 +90,9 @@ export const ContactCard = styled(Card)<animateProps>(({animate}) => ({
     // animation: animate ? `${moveLeftAnimation} 2s` : 'none',
 
     '@media (max-width: 600px)': {
-      position: 'inherit'
+      position: 'inherit',
+      
+      minHeight: '450px',
     },
   })
 )
