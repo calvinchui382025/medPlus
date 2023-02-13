@@ -10,31 +10,6 @@ const AboutRoot = styled(Root)({
   backgroundColor: 'gainsboro',
 })
 
-const Teammemberpicturecard = styled(Card)({
-  minHeight: 500,
-  minWidth: 500,
-  maxWidth: 345,
-  margin: "0px 15px 10px 15px",
-  position: 'relative',
-  boxShadow: niceBoxShadow,
-})
-
-// const Teammemberarea = styled('div')<animateProps>(({animate}) =>({
-//   display: 'flex',
-//   flexDirection: 'row',
-//   justifyContent: 'center',
-//   border: "none",
-//   boxShadow: "none",
-//   backgroundColor: "transparent",
-//   animation: `${moveDownAnimation} 2s`,
-
-//   '@media (max-width: 1600px)': {
-//     flexDirection: 'column',
-//     justifyContent: 'center',
-//   },
-// })
-// )
-
 const TeamTitle = styled('div')({
   marginTop: 10,
   marginBottom: 10,
@@ -47,36 +22,25 @@ const TeamMemberAreaCard = styled(Card)<animateProps>(({animate}) =>({
   marginTop: 20,
   paddingTop: 15,
   paddingBottom: 15,
-  width: "1250px",
+  width: "1050px",
   height: "550px",
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
+  alignItems: 'center',
   borderRadius: "70px",
   boxShadow: niceBoxShadow,
   backgroundColor: "white",
   animation: `${moveDownAnimation} 2s`,
 
   '@media (max-width: 1300px)': {
-    width: "90%",
-    height: "700px",
+    width: "700px",
+    height: "450px",
   },
-})
-)
-
-const TeamMemberAreaCardTwo = styled(Card)<animateProps>(({animate}) =>({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'top',
-  alignItems: 'center',
-  width: "1220px",
-  borderRadius: "65px",
-  border: "none",
-  boxShadow: "none",
-  backgroundColor: "rgb(227,234,240)",
-
-  '@media (max-width: 1300px)': {
+  '@media (max-width: 800px)': {
     width: "88%",
-    height: "700px",
+    height: "100%",
+    marginBottom: 15,
   },
 })
 )
@@ -86,7 +50,7 @@ const PictureArea = styled('div')({
   flexDirection: 'row',
   marginTop: 10,
   marginBottom: 10,
-  '@media (max-width: 1300px)': {
+  '@media (max-width: 800px)': {
     flexDirection: 'column',
   },
 })
@@ -133,70 +97,67 @@ export const About = () => {
     <AboutRoot>
       <ContentContainer>
         <TeamMemberAreaCard>
-          <TeamMemberAreaCardTwo>
-            <TeamTitle>
-              <Typography variant="h4" sx={{color: "rgb(35, 116, 176)", marginTop: 2}}>Meet our Team!</Typography>
-              {/* <Typography sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}} variant="h5" gutterBottom>...</Typography> */}
-            </TeamTitle>
-            <PictureArea>
-              <MemberAreaDiv>
-                <StyledImgElement
-                src={require("../../images/photo-dennis_borne-lg.jpg")}
-                style={{marginRight: "10px"}}
-                >  
-                </StyledImgElement>
-                <MemberDescriptionArea>
-                  <MemberName>Dennis Borne</MemberName>
-                  <IconButton
-                  sx={{color: "rgb(35, 116, 176)"}}
-                  aria-label="email"
-                  component="label"
-                  onClick={() => window.open('mailto:dennis@medplusllc.com')}
-                  >
-                    <EmailIcon fontSize="small"/>
-                  </IconButton>
-                  <MemberEmail>dennis@medplusllc.com</MemberEmail>
-                </MemberDescriptionArea>
-              </MemberAreaDiv>
-              <MemberAreaDiv>
-                <StyledImgElement
-                src={require("../../images/photo-peter_doyle-lg.jpg")}
-                >  
-                </StyledImgElement>
-                <MemberDescriptionArea>
-                  <MemberName>Peter Doyle</MemberName>
-                  <IconButton
-                  sx={{color: "rgb(35, 116, 176)"}}
-                  aria-label="email"
-                  component="label"
-                  onClick={() => window.open('mailto:pete@medplusllc.com')}
-                  >
-                    <EmailIcon fontSize="small"/>
-                  </IconButton>
-                  <MemberEmail>pete@medplusllc.com</MemberEmail>
-                </MemberDescriptionArea>
-              </MemberAreaDiv>
-              <MemberAreaDiv>
-                <StyledImgElement
-                src={require("../../images/photo-karen_jiminez-lg.jpg")}
-                style={{marginLeft: "10px"}}
-                >  
-                </StyledImgElement>
-                <MemberDescriptionArea>
-                  <MemberName>Karen Jiminez</MemberName>
-                  <IconButton
-                  sx={{color: "rgb(35, 116, 176)"}}
-                  aria-label="email"
-                  component="label"
-                  onClick={() => window.open('mailto:karenw@medplusllc.com')}
-                  >
-                    <EmailIcon fontSize="small"/>
-                  </IconButton>
-                  <MemberEmail>karenw@medplusllc.com</MemberEmail>
-                </MemberDescriptionArea>
-              </MemberAreaDiv>
-            </PictureArea>
-          </TeamMemberAreaCardTwo>
+          <TeamTitle>
+            <Typography variant="h4" sx={{color: "rgb(35, 116, 176)", marginTop: 2}}>Meet our Team!</Typography>
+          </TeamTitle>
+          <PictureArea>
+            <MemberAreaDiv>
+              <StyledImgElement
+              src={require("../../images/photo-dennis_borne-lg.jpg")}
+              style={{marginRight: "10px"}}
+              >  
+              </StyledImgElement>
+              <MemberDescriptionArea>
+                <MemberName>Dennis Borne</MemberName>
+                <IconButton
+                sx={{color: "rgb(35, 116, 176)"}}
+                aria-label="email"
+                component="label"
+                onClick={() => window.open('mailto:dennis@medplusllc.com')}
+                >
+                  <EmailIcon fontSize="small"/>
+                </IconButton>
+                <MemberEmail>dennis@medplusllc.com</MemberEmail>
+              </MemberDescriptionArea>
+            </MemberAreaDiv>
+            <MemberAreaDiv>
+              <StyledImgElement
+              src={require("../../images/photo-peter_doyle-lg.jpg")}
+              >  
+              </StyledImgElement>
+              <MemberDescriptionArea>
+                <MemberName>Peter Doyle</MemberName>
+                <IconButton
+                sx={{color: "rgb(35, 116, 176)"}}
+                aria-label="email"
+                component="label"
+                onClick={() => window.open('mailto:pete@medplusllc.com')}
+                >
+                  <EmailIcon fontSize="small"/>
+                </IconButton>
+                <MemberEmail>pete@medplusllc.com</MemberEmail>
+              </MemberDescriptionArea>
+            </MemberAreaDiv>
+            <MemberAreaDiv>
+              <StyledImgElement
+              src={require("../../images/photo-karen_jiminez-lg.jpg")}
+              style={{marginLeft: "10px"}}
+              >  
+              </StyledImgElement>
+              <MemberDescriptionArea>
+                <MemberName>Karen Jiminez</MemberName>
+                <IconButton
+                sx={{color: "rgb(35, 116, 176)"}}
+                aria-label="email"
+                component="label"
+                onClick={() => window.open('mailto:karenw@medplusllc.com')}
+                >
+                  <EmailIcon fontSize="small"/>
+                </IconButton>
+                <MemberEmail>karenw@medplusllc.com</MemberEmail>
+              </MemberDescriptionArea>
+            </MemberAreaDiv>
+          </PictureArea>
         </TeamMemberAreaCard>
         {/* <div>
             <h1>Our past</h1>
